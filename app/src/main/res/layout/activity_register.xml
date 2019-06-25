@@ -12,53 +12,67 @@
     tools:context="com.bahricorp.bahrimedia.Activity.RegisterActivity">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout"
-        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="120dp"
+        android:orientation="vertical">
 
         <EditText
-            android:layout_margin="15dp"
-            android:background="@drawable/fungover_edittext"
-            android:textStyle="normal"
-            android:inputType="textEmailAddress"
-            android:hint="Enter Your E-mail"
-            android:id="@+id/editTextEmail"
-            android:textAlignment="center"
+            android:id="@+id/editTextId"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/fungover_edittext"
             android:drawableLeft="@drawable/ic_username"
+            android:hint="Enter Your Username"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"
+            android:textStyle="normal"
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:background="@drawable/fungover_edittext"
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
             android:layout_margin="15dp"
-            android:layout_marginTop="20dp"
-            android:inputType="textPassword"
-            android:textStyle="normal"
+            android:background="@drawable/fungover_edittext"
+            android:drawableLeft="@drawable/ic_email_black_24dp"
+            android:hint="Enter Your E-mail"
+            android:inputType="textEmailAddress"
             android:textAlignment="center"
-            android:hint="Enter Your Password"
+            android:textStyle="normal"
+            tools:ignore="HardcodedText" />
+
+        <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:layout_margin="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/fungover_edittext"
             android:drawableLeft="@drawable/fungover_password"
+            android:hint="Enter Your Password"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:textStyle="normal"
             tools:ignore="HardcodedText" />
 
 
         <Button
             android:id="@+id/buttonRegister"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
             android:layout_width="320dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="1dp"
             android:background="@drawable/fungover_button"
             android:text="SUBMIT"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
             tools:ignore="HardcodedText,SpUsage" />
 
         <TextView
@@ -66,13 +80,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:elevation="1dp"
             android:text="Sign in"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="25sp"
             android:textStyle="bold"
-            tools:ignore="HardcodedText"
-            android:elevation="1dp"/>
+            tools:ignore="HardcodedText" />
 
 
     </LinearLayout>

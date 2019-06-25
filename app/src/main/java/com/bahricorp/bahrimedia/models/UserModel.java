@@ -2,7 +2,8 @@ package com.bahricorp.bahrimedia.models;
 
 public class UserModel
 {
-    public String id;
+    public String uid;
+    public String username;
     public String email;
     public String password;
     public String imageURL;
@@ -10,22 +11,33 @@ public class UserModel
 
     public UserModel() {}
 
-    public UserModel(String id, String email, String password, String imageURL)
+    public UserModel(String username, String email, String password, String imageURL, String uid)
     {
-        this.id = id;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.imageURL = imageURL;
+        this.uid = uid;
     }
 
     public String getId()
     {
-        return id;
+        return uid;
     }
 
     public void setId(String id)
     {
-        this.id = id;
+        this.uid = uid;
+    }
+
+    public String getName()
+    {
+        return username;
+    }
+
+    public void setName(String username)
+    {
+        this.username = username;
     }
 
     public String getEmail()

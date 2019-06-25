@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button buttonRegister;
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private EditText editTextUsername;
     private TextView textViewSignin;
 
     private ProgressDialog progressDialog;
@@ -39,6 +41,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference mDatabase;
+
+    String idText;
 
     @Override
     protected void onCreate(Bundle savedInstancedState)
@@ -59,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextUsername = (EditText) findViewById(R.id.editTextId);
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -71,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     {
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
+        final String username = editTextUsername.getText().toString().trim();
 
         if(TextUtils.isEmpty(email))
         {
@@ -84,15 +90,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
+        if(TextUtils.isEmpty(username))
+        {
+            Toast.makeText(this, "Please Enter Username", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         progressDialog.setMessage("Registering User...");
         progressDialog.show();
 
-        String emailTxt = editTextEmail.getText().toString();
+        idText = editTextUsername.getText().toString();
 
         // Get current date
         Calendar calFordData = Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMMM-yyyy");
         final String saveCurrentDate = currentDate.format(calFordData.getTime());
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
 
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
@@ -102,10 +117,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     {
                         if(task.isSuccessful())
                         {
+                            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            String userid = firebaseUser.getUid();
+                            String username = idText;
                             // Database location
-                            mDatabase = firebaseDatabase.getReference().child("Users").child(saveCurrentDate);
+                            mDatabase = firebaseDatabase.getReference().child("Users").child(username); // saveCurrentDate
 
                             // write data
+                            mDatabase.child("username").setValue(username);
+                            mDatabase.child("uid").setValue(userid);
                             mDatabase.child("email").setValue(email);
                             mDatabase.child("password").setValue(password);
 

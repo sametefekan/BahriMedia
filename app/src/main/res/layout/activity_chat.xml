@@ -52,14 +52,15 @@
 
         <Button
             android:id="@+id/button_send"
-            android:text="SEND"
             android:textSize="14dp"
-            android:background="?attr/selectableItemBackground"
+            android:background="@drawable/ic_send_black_24dp"
             android:clickable="true"
-            android:layout_width="64dp"
-            android:layout_height="48dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:gravity="center"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="0dp"/>
 
     </LinearLayout>
 

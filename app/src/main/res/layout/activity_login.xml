@@ -30,9 +30,9 @@
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:drawableLeft="@drawable/ic_username"
+            android:drawableLeft="@drawable/ic_email_black_24dp"
             tools:ignore="HardcodedText"
-            android:drawableStart="@drawable/ic_username" />
+            android:drawableStart="@drawable/ic_email_black_24dp" />
 
         <EditText
             android:background="@drawable/fungover_edittext"

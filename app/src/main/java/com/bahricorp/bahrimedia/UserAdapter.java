@@ -47,6 +47,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> //
     {
         final UserModel user = mUserModels.get(position);
         holder.email.setText(user.getEmail());
+        holder.username.setText(user.getName());
 
         /*
         if(user.getImageURL().equals("default"))
@@ -66,6 +67,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> //
             {
                 Intent intent = new Intent(mContext, ChatActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("userId", user.getId());
+                intent.putExtra("userName", user.getName());
                 intent.putExtra("userEmail", user.getEmail());
                 mContext.startActivity(intent);
             }
@@ -78,26 +81,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> //
         return mUserModels.size();
     }
 
-    public void setDetails(Context ctx, String email)
-    {
-        TextView textView = mView.findViewById(R.id.useremail);
-        textView.setText(email);
-
-        /*
-        ImageView imageView = mView.findViewById(R.id.profile_image);
-        Picasso.get().load(imageUrl).into(imageView);
-
-        imgUrl = imageUrl;
-        */
-    }
-
-
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         public TextView email;
-
-        public TextView id;
+        public TextView username;
         public ImageView profile_image;
 
         ViewHolder(View itemView)
@@ -105,6 +93,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> //
             super(itemView);
 
             email = itemView.findViewById(R.id.useremail);
+            username = itemView.findViewById(R.id.username);
             profile_image = itemView.findViewById(R.id.profile_image);
         }
 
@@ -112,6 +101,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> //
         {
             email = itemView.findViewById(R.id.useremail);
             email.setText(emailText);
+        }
+
+        public void setNameText(String nameText)
+        {
+            email = itemView.findViewById(R.id.username);
+            email.setText(nameText);
         }
     }
 }
