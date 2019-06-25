@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorBlue"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    tools:context="com.bahricorp.bahrimedia.Activity.LoginActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:layout_margin="15dp"
+            android:background="@drawable/fungover_edittext"
+            android:textStyle="normal"
+            android:inputType="textEmailAddress"
+            android:hint="Enter Your E-mail"
+            android:id="@+id/editTextEmail"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:drawableLeft="@drawable/ic_username"
+            tools:ignore="HardcodedText"
+            android:drawableStart="@drawable/ic_username" />
+
+        <EditText
+            android:background="@drawable/fungover_edittext"
+            android:layout_margin="15dp"
+            android:layout_marginTop="20dp"
+            android:inputType="textPassword"
+            android:textStyle="normal"
+            android:textAlignment="center"
+            android:hint="Enter Your Password"
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:drawableLeft="@drawable/fungover_password"
+            tools:ignore="HardcodedText"
+            android:drawableStart="@drawable/fungover_password" />
+
+        <Button
+            android:id="@+id/buttonSignIn"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:background="@drawable/fungover_button"
+            android:text="SUBMIT"
+            tools:ignore="HardcodedText,SpUsage" />
+
+        <TextView
+            android:layout_margin="5dp"
+            android:textAlignment="center"
+            android:text="Sign Up"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp"
+            android:id="@+id/textViewSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:text="Login"
+        android:textColor="@color/colorWhite"
+        android:textSize="38dp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,SpUsage" />
+
+    <ImageView
+        android:id="@+id/ivLogoSignIn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="0dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="?android:attr/fingerprintAuthDrawable"
+        tools:ignore="ContentDescription,NewApi" />
+</RelativeLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ProfileActivity">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/fungover_color"/>
+
+    <ImageView
+        android:id="@+id/profilePhoto"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/circle"
+        android:layout_marginTop="95dp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="TODO" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:background="@drawable/fungover_edittext"
+        android:drawableLeft="@drawable/ic_username"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Welcome redgame34@gmail.com"
+        android:gravity="center"
+        android:layout_below="@id/profilePhoto"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        tools:ignore="HardcodedText"
+        android:drawableStart="@drawable/ic_username" />
+
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="137dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/textViewEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/fungover_button"
+        android:text="Log Out"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/buttonHome"
+        android:layout_width="137dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/buttonLogout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/fungover_button"
+        android:text="Home"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>
