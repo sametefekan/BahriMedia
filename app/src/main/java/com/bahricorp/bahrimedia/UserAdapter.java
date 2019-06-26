@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> // RecyclerView.ViewHolder
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>
 {
     public List<UserModel> mUserModels;
     public LayoutInflater mInflater;

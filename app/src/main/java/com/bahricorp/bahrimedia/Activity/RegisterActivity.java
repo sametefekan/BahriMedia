@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     FirebaseDatabase firebaseDatabase;
     DatabaseReference mDatabase;
 
-    String idText;
+    String idText, emailText;
 
     @Override
     protected void onCreate(Bundle savedInstancedState)
@@ -100,6 +100,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         progressDialog.show();
 
         idText = editTextUsername.getText().toString();
+        emailText = editTextEmail.getText().toString();
 
         // Get current date
         Calendar calFordData = Calendar.getInstance();
@@ -119,9 +120,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         {
                             FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                             String userid = firebaseUser.getUid();
-                            String username = idText;
+
                             // Database location
-                            mDatabase = firebaseDatabase.getReference().child("Users").child(username); // saveCurrentDate
+                            mDatabase = firebaseDatabase.getReference().child("Users").child(userid); // saveCurrentDate
 
                             // write data
                             mDatabase.child("username").setValue(username);

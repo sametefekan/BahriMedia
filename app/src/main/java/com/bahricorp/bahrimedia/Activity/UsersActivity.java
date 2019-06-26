@@ -66,8 +66,8 @@ public class UsersActivity extends AppCompatActivity
         firebaseAuth = FirebaseAuth.getInstance();
 
         recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         userAdapter = new UserAdapter(this, mUserModels);
         recyclerView.setAdapter(userAdapter);
@@ -99,7 +99,6 @@ public class UsersActivity extends AppCompatActivity
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-
         reference.addValueEventListener(new ValueEventListener()
         {
             @Override
