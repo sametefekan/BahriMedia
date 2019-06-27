@@ -26,18 +26,18 @@
             android:layout_width="match_parent"
             android:layout_height="600dp">
 
-            <ImageView
-                android:id="@+id/blog_like_btn"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:tint="@color/colorRed"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <Button
+                android:id="@+id/button_chat"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="SEND MESSAGE"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/fungover_button"
+                android:layout_marginTop="120dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/blog_title"
-                app:srcCompat="@mipmap/action_like_gray" />
+                app:layout_constraintTop_toBottomOf="@+id/blog_title" />
 
             <ImageView
                 android:id="@+id/blog_user_image"
@@ -77,10 +77,11 @@
                 android:id="@+id/blog_image"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="16dp"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
                 android:background="@drawable/image_placeholder"
+                android:scaleType="centerCrop"
+
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/blog_user_image" />
@@ -112,42 +113,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/blog_image" />
-
-            <TextView
-                android:id="@+id/blog_like_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="0 Likes"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/blog_like_btn"
-                app:layout_constraintTop_toBottomOf="@+id/blog_title" />
-
-            <TextView
-                android:id="@+id/blog_comment_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="0 Comments"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/blog_title" />
-
-            <ImageView
-                android:id="@+id/blog_comment_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/blog_comment_count"
-                app:layout_constraintTop_toBottomOf="@+id/blog_title"
-                app:srcCompat="@mipmap/action_comment_icon" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

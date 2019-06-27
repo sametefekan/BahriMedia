@@ -30,6 +30,7 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
 
     public static String imgUrl;
     public static String dscText;
+    public static String uidText;
 
     private  SimpleRVAdapter.ClickListener mListener;
 
@@ -61,29 +62,6 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
         */
     }
 
-    /*
-    @Override // new
-    public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);
-        return new SimpleViewHolder(view);
-    }
-
-    @Override // new
-    public void onBindViewHolder(SimpleViewHolder holder, int position)
-    {
-        BlogPost currentItem = mExampleList.get(position);
-        String imageUrl = currentItem.getImage();
-    }
-
-    @Override // new
-    public int getItemCount()
-    {
-        // size or lenght
-        return mExampleList.size();
-    }
-    */
-
     public interface ClickListener
     {
         void onItemClick(View view, int position); //View view, int position
@@ -95,7 +73,7 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
         mListener = clickListener;
     }
 
-    public void setDetails(Context ctx, String blogTitle, String nameText, String emailText, String imageUrl, String descText)
+    public void setDetails(Context ctx, String blogTitle, String nameText, String emailText, String imageUrl, String descText, String userId)
     {
         TextView textView = mView.findViewById(R.id.blog_title);
         textView.setText(blogTitle);
@@ -111,6 +89,7 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
 
         dscText = descText;
         imgUrl = imageUrl;
+        uidText = userId;
     }
 
     /**

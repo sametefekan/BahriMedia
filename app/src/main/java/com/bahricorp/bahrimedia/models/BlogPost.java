@@ -7,16 +7,17 @@ public class BlogPost extends BlogPostId
     public String title;
     public String image;
     public String desc;
-
+    public String userId;
 
     public BlogPost() {}
 
-    public BlogPost(String name, String email, String title, String desc)
+    public BlogPost(String name, String email, String title, String desc, String userId)
     {
         this.name = name;
         this.email = email;
         this.title = title;
         this.desc = desc;
+        this.userId = userId;
     }
 
     public String getName()
@@ -67,6 +68,16 @@ public class BlogPost extends BlogPostId
     public void setImage(String image)
     {
         this.image = image;
+    }
+
+    public String getUid()
+    {
+        return userId;
+    }
+
+    public void setUid(String userId)
+    {
+        this.userId = userId;
     }
 
 }

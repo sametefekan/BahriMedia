@@ -1,6 +1,7 @@
 package com.bahricorp.bahrimedia.Activity;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.bahricorp.bahrimedia.R;
 import com.bahricorp.bahrimedia.SimpleRVAdapter;
 import com.bahricorp.bahrimedia.UserAdapter;
+import com.bahricorp.bahrimedia.models.ChatModel;
 import com.bahricorp.bahrimedia.models.UserModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UsersActivity extends AppCompatActivity
 {
@@ -36,6 +39,7 @@ public class UsersActivity extends AppCompatActivity
 
     private UserAdapter userAdapter;
     private ArrayList<UserModel> mUserModels;
+    private List<String> mUsers;
 
     // new
     private FirebaseAuth firebaseAuth;
@@ -61,6 +65,8 @@ public class UsersActivity extends AppCompatActivity
         actionBar.setDisplayShowHomeEnabled(true);
 
         mUserModels = new ArrayList<>();
+
+        mUsers = new ArrayList<>();
 
         // Firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
@@ -98,7 +104,7 @@ public class UsersActivity extends AppCompatActivity
     {
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users"); // "Chats"
         reference.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -108,6 +114,7 @@ public class UsersActivity extends AppCompatActivity
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
+                    /* it's for users activity
                     UserModel user = snapshot.getValue(UserModel.class);
 
                     assert user != null;
@@ -117,10 +124,74 @@ public class UsersActivity extends AppCompatActivity
                     {
                         mUserModels.add(user);
                     }
+                    */
+
+                    // it's for you have messages chat activity
+                    ChatModel chat = snapshot.getValue(ChatModel.class);
+
+                    if(chat.getSender().equals((firebaseUser.getUid())))
+                    {
+                        mUserModels.add(chat.getReceiver());
+                    }
+                    if(chat.getReceiver().equals(firebaseUser.getUid()))
+                    {
+                        mUserModels.add(chat.getSender());
+                    }
+
+                    readChats();
                 }
 
                 userAdapter = new UserAdapter(getBaseContext(), mUserModels);
                 recyclerView.setAdapter(userAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
+        });
+    }
+
+    private void readChats()
+    {
+        mUsers = new ArrayList<>();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+
+        reference.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                mUsers.clear();
+
+                for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    UserModel user = snapshot.getValue(UserModel.class);
+
+                    for(String id : mUserModels)
+                    {
+                        if(user.getId().equals(id))
+                        {
+                            if (mUsers.size() != 0)
+                            {
+                                for (UserModel user1 : mUsers)
+                                {
+                                    if(!user.getId().equals(user1.getId()))
+                                    {
+                                        mUserModels.add(user);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                mUserModels.add(user);
+                            }
+                        }
+                    }
+                }
+
             }
 
             @Override

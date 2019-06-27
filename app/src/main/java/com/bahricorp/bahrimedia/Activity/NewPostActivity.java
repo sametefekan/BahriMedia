@@ -254,10 +254,10 @@ public class NewPostActivity extends AppCompatActivity
 
                     mDatabase.child("title").setValue(Title);
                     mDatabase.child("desc").setValue(Description);
+                    mDatabase.child("name").setValue(userName);
                     mDatabase.child("image").setValue(downUri.toString());
                     mDatabase.child("email").setValue(user.getEmail());
-
-                    mDatabase.child("name").setValue(userName);
+                    mDatabase.child("userId").setValue(user.getUid());
                 }
                 else
                 {

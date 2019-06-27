@@ -1,8 +1,11 @@
 package com.bahricorp.bahrimedia.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +22,7 @@ public class PostDetailActivity extends AppCompatActivity
     public TextView emailTextView;
     public TextView descTextView;
     public ImageView imageView;
+    public Button chatButton;
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference mDatabase;
@@ -44,6 +48,7 @@ public class PostDetailActivity extends AppCompatActivity
         nameTextView = findViewById(R.id.user_name);
         emailTextView = findViewById(R.id.user_email);
         descTextView = findViewById(R.id.blog_desc);
+        chatButton = findViewById(R.id.button_chat);
 
         // image view
         imageView = findViewById(R.id.blog_image);
@@ -53,6 +58,7 @@ public class PostDetailActivity extends AppCompatActivity
         String mName = getIntent().getStringExtra("name");
         String mEmail = getIntent().getStringExtra("email");
         String mDesc = getIntent().getStringExtra("desc");
+        final String uid = getIntent().getStringExtra("userId");
 
         String mImg = getIntent().getStringExtra("image");
 
@@ -69,6 +75,22 @@ public class PostDetailActivity extends AppCompatActivity
         descTextView.setText(mDesc);
 
         Picasso.get().load(mImg).into(imageView);
+
+        chatButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(PostDetailActivity.this, ChatActivity.class);
+
+                intent.putExtra("userId", uid);
+                intent.putExtra("userName", nameTextView.getText().toString());
+                intent.putExtra("userEmail", emailTextView.getText().toString());
+
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override

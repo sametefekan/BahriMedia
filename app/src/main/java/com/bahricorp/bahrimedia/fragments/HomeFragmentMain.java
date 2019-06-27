@@ -39,6 +39,7 @@ public class HomeFragmentMain extends Fragment
 
     public String image;
     public String desc;
+    public String uid;
 
     public HomeFragmentMain() {}
 
@@ -67,7 +68,7 @@ public class HomeFragmentMain extends Fragment
             @Override
             protected void populateViewHolder(SimpleRVAdapter rvAdapter, final BlogPost model, int position)
             {
-                rvAdapter.setDetails(container.getContext(), model.getTitle(), model.getName(), model.getEmail(), model.getImage(), model.getDesc());
+                rvAdapter.setDetails(container.getContext(), model.getTitle(), model.getName(), model.getEmail(), model.getImage(), model.getDesc(), model.getUid());
 
                 rvAdapter.setOnClickListener(new SimpleRVAdapter.ClickListener()
                 {
@@ -76,6 +77,7 @@ public class HomeFragmentMain extends Fragment
                     {
                         image = model.getImage();
                         desc = model.getDesc();
+                        uid = model.getUid();
 
                         // views find
                         TextView textView = (TextView) view.findViewById(R.id.blog_title);
@@ -114,6 +116,7 @@ public class HomeFragmentMain extends Fragment
 
                         intent.putExtra("image", image); // put Title
                         intent.putExtra("desc", desc); // put Title
+                        intent.putExtra("userId", uid); // put Title
 
                         startActivity(intent);
                     }
@@ -179,6 +182,7 @@ public class HomeFragmentMain extends Fragment
 
                         intent.putExtra("image", image); // put Title
                         intent.putExtra("desc", desc); // put Title
+                        intent.putExtra("userId", uid);
 
                         startActivity(intent);
                     }
