@@ -38,8 +38,9 @@ public class UsersActivity extends AppCompatActivity
     private RecyclerView recyclerView;
 
     private UserAdapter userAdapter;
-    private ArrayList<UserModel> mUserModels;
-    private List<String> mUsers;
+
+    private ArrayList<UserModel> mUsers;
+    private List<String> usersList;
 
     // new
     private FirebaseAuth firebaseAuth;
@@ -48,6 +49,8 @@ public class UsersActivity extends AppCompatActivity
     private DatabaseReference mDatabase;
 
     public String image;
+
+    FirebaseUser fuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,9 +67,8 @@ public class UsersActivity extends AppCompatActivity
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-        mUserModels = new ArrayList<>();
-
         mUsers = new ArrayList<>();
+        usersList = new ArrayList<>();
 
         // Firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
@@ -75,7 +77,7 @@ public class UsersActivity extends AppCompatActivity
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        userAdapter = new UserAdapter(this, mUserModels);
+        userAdapter = new UserAdapter(this, mUsers);
         recyclerView.setAdapter(userAdapter);
 
         // old
@@ -102,15 +104,21 @@ public class UsersActivity extends AppCompatActivity
     // old
     private void readUser()
     {
-        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        // old one
+        // final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users"); // "Chats"
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats"); // old one "Users"
         reference.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                mUserModels.clear();
+                // old for users activity
+                mUsers.clear();
+
+                // new for chats activity
+                usersList.clear();
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
@@ -122,27 +130,31 @@ public class UsersActivity extends AppCompatActivity
 
                     if(!user.getEmail().equals(firebaseUser.getUid()))
                     {
-                        mUserModels.add(user);
+                        mUsers.add(user);
                     }
                     */
 
+                    // start
                     // it's for you have messages chat activity
                     ChatModel chat = snapshot.getValue(ChatModel.class);
 
-                    if(chat.getSender().equals((firebaseUser.getUid())))
+                    if(chat.getSender().equals((fuser.getUid())))
                     {
-                        mUserModels.add(chat.getReceiver());
+                        usersList.add(chat.getReceiver());
                     }
-                    if(chat.getReceiver().equals(firebaseUser.getUid()))
+                    if(chat.getReceiver().equals(fuser.getUid()))
                     {
-                        mUserModels.add(chat.getSender());
+                        usersList.add(chat.getSender());
                     }
-
-                    readChats();
                 }
 
-                userAdapter = new UserAdapter(getBaseContext(), mUserModels);
+                // new
+                readChats();
+
+                /* // it's for users activity
+                userAdapter = new UserAdapter(getBaseContext(), mUsers);
                 recyclerView.setAdapter(userAdapter);
+                */
             }
 
             @Override
@@ -153,12 +165,12 @@ public class UsersActivity extends AppCompatActivity
         });
     }
 
+    // it's new for chats activity
     private void readChats()
     {
         mUsers = new ArrayList<>();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-
         reference.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -170,7 +182,7 @@ public class UsersActivity extends AppCompatActivity
                 {
                     UserModel user = snapshot.getValue(UserModel.class);
 
-                    for(String id : mUserModels)
+                    for(String id : usersList)
                     {
                         if(user.getId().equals(id))
                         {
@@ -180,18 +192,20 @@ public class UsersActivity extends AppCompatActivity
                                 {
                                     if(!user.getId().equals(user1.getId()))
                                     {
-                                        mUserModels.add(user);
+                                        mUsers.add(user);
                                     }
                                 }
                             }
                             else
                             {
-                                mUserModels.add(user);
+                                mUsers.add(user);
                             }
                         }
                     }
                 }
 
+                userAdapter = new UserAdapter(getBaseContext(), mUsers);
+                recyclerView.setAdapter(userAdapter);
             }
 
             @Override

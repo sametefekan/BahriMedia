@@ -10,7 +10,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/new_post_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:background="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,11 +20,31 @@
 
     <ImageButton
         android:id="@+id/new_post_image"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_post_toolbar"
+        app:srcCompat="@drawable/post_placeholder" />
+
+    <ImageButton
+        android:id="@+id/new_post_image2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_post_toolbar"
+        app:srcCompat="@drawable/post_placeholder" />
+
+    <ImageButton
+        android:id="@+id/new_post_image3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_post_toolbar"
         app:srcCompat="@drawable/post_placeholder" />
 
@@ -36,7 +56,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Post Title Write Here"
+        android:hint="Title Write Here"
         android:inputType="textMultiLine"
         android:maxLength="125"
         android:padding="16dp"
@@ -52,13 +72,41 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Post Description Write Here"
+        android:hint="Description Write Here"
         android:inputType="textMultiLine"
         android:maxLength="125"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_post_title" />
+
+    <EditText
+        android:id="@+id/new_post_price"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Price"
+        android:inputType="textMultiLine"
+        android:maxLength="10"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_post_desc" />
+
+    <Spinner
+        android:id="@+id/spinner_category"
+        android:layout_width="260dp"
+        android:layout_height="44dp"
+        android:padding="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_post_desc" >
+    </Spinner>
 
     <Button
         android:id="@+id/post_btn"
@@ -75,7 +123,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_post_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/new_post_price" />
 
     <ProgressBar
         android:id="@+id/new_post_progress"
