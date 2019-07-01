@@ -15,5 +15,6 @@
     <color name="colorPink">#FF00FB</color>
     <color name="indigo">#FF00FB</color>
     <color name="colorMagenta">#FF0080</color>
+    <color name="colorGrey">#DFDFDF</color>
 
 </resources>

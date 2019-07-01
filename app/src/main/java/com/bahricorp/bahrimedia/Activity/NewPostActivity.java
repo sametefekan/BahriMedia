@@ -12,9 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bahricorp.bahrimedia.R;
@@ -39,7 +42,7 @@ import com.google.firebase.storage.UploadTask;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class NewPostActivity extends AppCompatActivity
+public class NewPostActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
     private Button buttonShare;
     private EditText postTitle;
@@ -63,6 +66,9 @@ public class NewPostActivity extends AppCompatActivity
 
     private ProgressDialog progressDialog;
 
+    private Spinner spinner;
+    private static final String[] paths = {"Real-Estate", "Car", "Electronic"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -82,6 +88,16 @@ public class NewPostActivity extends AppCompatActivity
         buttonShare = (Button) findViewById(R.id.post_btn);
         postTitle = (EditText) findViewById(R.id.new_post_title);
         postDesc = (EditText) findViewById(R.id.new_post_desc);
+
+        // get the spinner from the xml.
+        spinner = (Spinner)findViewById(R.id.spinner_category);
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, paths);
+        //set the spinners adapter to the previously created one.
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
         progressDialog = new ProgressDialog(this);
 
@@ -111,6 +127,31 @@ public class NewPostActivity extends AppCompatActivity
             }
         });
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id)
+    {
+        switch (position)
+        {
+            case 0:
+                // Whatever you want to happen when the first item gets selected
+                break;
+            case 1:
+                // Whatever you want to happen when the second item gets selected
+                break;
+            case 2:
+                // Whatever you want to happen when the thrid item gets selected
+                break;
+
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent)
+    {
+        // TODO Auto-generated method stub
+    }
+
 
     @Override
     public boolean onSupportNavigateUp()

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class HomeFragmentMain extends Fragment
 {
     private RecyclerView recyclerView;
+    private RecyclerView recyclerView1;
     private ArrayList<BlogPost> mExampleList; // List<BlogPost>
 
     private Button button;
@@ -55,7 +56,7 @@ public class HomeFragmentMain extends Fragment
 
         recyclerView = view.findViewById(R.id.blog_list_view);
         recyclerView.setHasFixedSize(true);
-        RecyclerView recyclerView = new RecyclerView(container.getContext());
+        /* RecyclerView */ recyclerView = new RecyclerView(container.getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
 
         firebaseDatabase = FirebaseDatabase.getInstance();
