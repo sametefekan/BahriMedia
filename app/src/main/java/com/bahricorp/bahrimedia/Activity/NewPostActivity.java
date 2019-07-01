@@ -3,6 +3,7 @@ package com.bahricorp.bahrimedia.Activity;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -38,6 +39,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -47,7 +50,10 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
     private Button buttonShare;
     private EditText postTitle;
     private EditText postDesc;
+    private EditText postPrice;
     private ImageButton imageButton;
+    private ImageButton imageButton2;
+    private ImageButton imageButton3;
 
     private static final int GalleryPick = 1;
 
@@ -62,12 +68,21 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
     DatabaseReference mDatabase;
     DatabaseReference mDatabase1;
 
-    private String saveCurrentDate, saveCurrentTime, postRandomName, generatedFilePath, Title, Description, userName;
+    private String saveCurrentDate, saveCurrentTime, postRandomName, generatedFilePath, Title, Description, Price, userName, category_text;
 
     private ProgressDialog progressDialog;
 
     private Spinner spinner;
-    private static final String[] paths = {"Real-Estate", "Car", "Electronic"};
+    private static final String[] paths = {
+            "Cars",
+            "Real Estate",
+            "Electronic",
+            "House&Garden",
+            "Entertainment",
+            "Other Vehicles",
+            "Clothes&Accessories",
+            "Movie, Book&Music",
+            "Others"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -84,13 +99,18 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-        imageButton = (ImageButton) findViewById(R.id.new_post_image);
         buttonShare = (Button) findViewById(R.id.post_btn);
+
+        imageButton = (ImageButton) findViewById(R.id.new_post_image);
+        imageButton2 = (ImageButton) findViewById(R.id.new_post_image2);
+        imageButton3 = (ImageButton) findViewById(R.id.new_post_image3);
+
         postTitle = (EditText) findViewById(R.id.new_post_title);
         postDesc = (EditText) findViewById(R.id.new_post_desc);
+        postPrice = (EditText) findViewById(R.id.new_post_price);
 
-        // get the spinner from the xml.
         spinner = (Spinner)findViewById(R.id.spinner_category);
+
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, paths);
@@ -115,6 +135,25 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
                 OpenGallery();
             }
         });
+
+        imageButton2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
+
+        imageButton3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
+
         buttonShare.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -131,18 +170,44 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id)
     {
-        switch (position)
+        switch(position)
         {
             case 0:
+                category_text = "cars";
                 // Whatever you want to happen when the first item gets selected
                 break;
             case 1:
+                category_text = "real-estate";
                 // Whatever you want to happen when the second item gets selected
                 break;
             case 2:
+                category_text = "electronic";
                 // Whatever you want to happen when the thrid item gets selected
                 break;
-
+            case 3:
+                category_text = "house-garden";
+                // Whatever you want to happen when the thrid item gets selected
+                break;
+            case 4:
+                category_text = "entertainment";
+                // Whatever you want to happen when the thrid item gets selected
+                break;
+            case 5:
+                category_text = "other-vehicles";
+                // Whatever you want to happen when the thrid item gets selected
+                break;
+            case 6:
+                category_text = "clothes-accessories";
+                // Whatever you want to happen when the thrid item gets selected
+                break;
+            case 7:
+                category_text = "movie-book-music";
+                // Whatever you want to happen when the thrid item gets selected
+                break;
+            case 8:
+                category_text = "others";
+                // Whatever you want to happen when the thrid item gets selected
+                break;
         }
     }
 
@@ -188,6 +253,8 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
 
             Title = postTitle.getText().toString();
             Description = postDesc.getText().toString();
+            Price = postPrice.getText().toString();
+            category_text = spinner.getSelectedItem().toString();
 
             progressDialog.setMessage("Uploading, please wait...");
             progressDialog.show();
@@ -232,7 +299,31 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
             ImageUri = data.getData();
             imageButton.setImageURI(ImageUri);
 
+            // for Crop Image
+            // start picker to get image for cropping and then use the image in cropping activity
+            // CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(this);
+
+            // start cropping activity for pre-acquired image saved on the device
+            CropImage.activity(ImageUri).setAspectRatio(16, 9).setBorderLineColor(Color.RED).start(this);
+            //.setCropShape(CropImageView.CropShape.RECTANGLE)
+            //.setAspectRatio(4, 4)
             //TODO: action
+        }
+
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            if(resultCode == RESULT_OK)
+            {
+                ImageUri = result.getUri();
+                imageButton.setImageURI(ImageUri);
+            }
+
+            else if(resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
+            {
+                Exception error = result.getError();
+            }
         }
     }
 
@@ -263,7 +354,7 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
         final StorageReference filePath = PostImagesRefrence.child(ImageUri.getLastPathSegment() + postRandomName + ".jpg"); // final StorageReference filePath = PostImagesRefrence.child("Post images").child(ImageUri.getLastPathSegment() + postRandomName + ".jpg");
 
         // Database location
-        mDatabase = firebaseDatabase.getReference().child("Post").child(postRandomName);
+        mDatabase = firebaseDatabase.getReference().child("Post").child(postRandomName); //.child(category_text)
 
         // add file on Firebase and got Download Link
         filePath.putFile(ImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()
@@ -285,7 +376,7 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
             {
                 if(task.isSuccessful())
                 {
-                    Toast.makeText(NewPostActivity.this, "image uploaded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewPostActivity.this, "post uploaded", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
 
                     Uri downUri = task.getResult();
@@ -296,6 +387,8 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
                     mDatabase.child("title").setValue(Title);
                     mDatabase.child("desc").setValue(Description);
                     mDatabase.child("name").setValue(userName);
+                    mDatabase.child("price").setValue(Price + "€");
+
                     mDatabase.child("image").setValue(downUri.toString());
                     mDatabase.child("email").setValue(user.getEmail());
                     mDatabase.child("userId").setValue(user.getUid());

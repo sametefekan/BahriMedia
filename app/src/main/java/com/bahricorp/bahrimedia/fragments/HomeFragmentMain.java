@@ -3,6 +3,7 @@ package com.bahricorp.bahrimedia.fragments;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,14 +39,18 @@ public class HomeFragmentMain extends Fragment
     private DatabaseReference mDatabase;
     private SimpleRVAdapter simpleRVAdapter;
 
-    public String image;
-    public String desc;
     public String uid;
+    public String desc;
+    public String image;
+
+    public String mName;
+    public String mEmail;
+    public String price;
 
     public HomeFragmentMain() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -54,43 +59,65 @@ public class HomeFragmentMain extends Fragment
         // Firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
 
+        GridLayoutManager layoutManager = new GridLayoutManager(container.getContext(), 2);
+
         recyclerView = view.findViewById(R.id.blog_list_view);
         recyclerView.setHasFixedSize(true);
-        /* RecyclerView */ recyclerView = new RecyclerView(container.getContext());
-        recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
+
+        //old one for 1 card view
+        // RecyclerView
+        recyclerView = new RecyclerView(container.getContext());
+        // recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
+
+        recyclerView.setLayoutManager(layoutManager);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         mDatabase = firebaseDatabase.getReference("Post");
 
-        // before SimpleRVAdapter
-        // after SimpleRVAdapter.SimpleViewHolder
-        FirebaseRecyclerAdapter<BlogPost, SimpleRVAdapter> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<BlogPost, SimpleRVAdapter>(BlogPost.class, R.layout.card, SimpleRVAdapter.class, mDatabase)
+        // R.layout.card
+        // R.layout.card_product
+        FirebaseRecyclerAdapter<BlogPost, SimpleRVAdapter> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<BlogPost, SimpleRVAdapter>(BlogPost.class, R.layout.card_product, SimpleRVAdapter.class, mDatabase) //R.layout.card
         {
             @Override
             protected void populateViewHolder(SimpleRVAdapter rvAdapter, final BlogPost model, int position)
             {
-                rvAdapter.setDetails(container.getContext(), model.getTitle(), model.getName(), model.getEmail(), model.getImage(), model.getDesc(), model.getUid());
+                // old one
+                // rvAdapter.setDetails(container.getContext(), model.getTitle(), model.getName(), model.getEmail(), model.getImage(), model.getDesc(), model.getUid(), model.getPrice());
+
+                rvAdapter.setProduct(container.getContext(), model.getTitle(), model.getName(), model.getEmail(), model.getImage(), model.getDesc(), model.getUid(), model.getPrice());
 
                 rvAdapter.setOnClickListener(new SimpleRVAdapter.ClickListener()
                 {
                     @Override
                     public void onItemClick(View view, int position)
                     {
-                        image = model.getImage();
-                        desc = model.getDesc();
                         uid = model.getUid();
+                        desc = model.getDesc();
+                        image = model.getImage();
+
+                        mName = model.getName();
+                        mEmail = model.getEmail();
+                        price = model.getPrice();
 
                         // views find
-                        TextView textView = (TextView) view.findViewById(R.id.blog_title);
-                        TextView nameTextView = (TextView) view.findViewById(R.id.user_name);
-                        TextView emailTextView = (TextView) view.findViewById(R.id.user_email);
                         ImageView imageView = (ImageView) view.findViewById(R.id.blog_image);
-                        TextView descTextView = (TextView) view.findViewById(R.id.blog_desc);
+                        TextView titleTextView = (TextView) view.findViewById(R.id.blog_title);
+
+                        // old
+                        // TextView nameTextView = (TextView) view.findViewById(R.id.user_name);
+                        // TextView emailTextView = (TextView) view.findViewById(R.id.user_email);
+
+                        // old one
+                        // String mName = nameTextView.getText().toString();
+                        // String mEmail = emailTextView.getText().toString();
+
+                        // new
+                        TextView priceTextView = (TextView) view.findViewById(R.id.blog_price);
 
                         //get data from views
-                        String mTitle = textView.getText().toString();
-                        String mName = nameTextView.getText().toString();
-                        String mEmail = emailTextView.getText().toString();
+                        String mTitle = titleTextView.getText().toString();
+
+                        price = priceTextView.getText().toString();
 
                         // get image
                         /*
@@ -106,7 +133,6 @@ public class HomeFragmentMain extends Fragment
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
                         mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream); // mBitmap.compress((Bitmap.CompressFormat.PNG), 100, stream);
                         byte[] bytes = stream.toByteArray();
-
                         // put bitmap image as array of bytes
                         intent.putExtra("image", bytes);
                         */
@@ -119,14 +145,13 @@ public class HomeFragmentMain extends Fragment
                         intent.putExtra("desc", desc); // put Title
                         intent.putExtra("userId", uid); // put Title
 
+                        intent.putExtra("price", price); // put Price
+
                         startActivity(intent);
                     }
 
                     @Override
-                    public void onItemLongClick(View view, int position)
-                    {
-
-                    }
+                    public void onItemLongClick(View view, int position) { }
                 });
             }
 
@@ -143,55 +168,13 @@ public class HomeFragmentMain extends Fragment
                     @Override
                     public void onItemClick(View view, int position)
                     {
-                        image = SimpleRVAdapter.imgUrl;
-                        desc = SimpleRVAdapter.dscText;
-
-                        // views find
-                        TextView textView = (TextView) view.findViewById(R.id.blog_title);
-                        TextView nameTextView = (TextView) view.findViewById(R.id.user_name);
-                        TextView emailTextView = (TextView) view.findViewById(R.id.user_email);
-                        ImageView imageView = (ImageView) view.findViewById(R.id.blog_image);
-                        TextView descTextView = (TextView) view.findViewById(R.id.blog_desc);
-
-                        //get data from views
-                        String mTitle = textView.getText().toString();
-                        String mName = nameTextView.getText().toString();
-                        String mEmail = emailTextView.getText().toString();
-
-                        // get image
-                        /*
-                        Drawable mDrawable = imageView.getDrawable();
-                        Bitmap mBitmap = ((BitmapDrawable)mDrawable).getBitmap();
-                        */
-
-                        // pass this data to new activity
                         Intent intent = new Intent(view.getContext(), PostDetailActivity.class);
-
-                        /*
-                        // image
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream); // mBitmap.compress((Bitmap.CompressFormat.PNG), 100, stream);
-                        byte[] bytes = stream.toByteArray();
-
-                        // put bitmap image as array of bytes
-                        intent.putExtra("image", bytes);
-                        */
-
-                        intent.putExtra("title", mTitle); // put Title
-                        intent.putExtra("name", mName); // put name
-                        intent.putExtra("email", mEmail); // put email
-
-                        intent.putExtra("image", image); // put Title
-                        intent.putExtra("desc", desc); // put Title
-                        intent.putExtra("userId", uid);
 
                         startActivity(intent);
                     }
-                    @Override
-                    public void onItemLongClick(View view, int position)
-                    {
 
-                    }
+                    @Override
+                    public void onItemLongClick(View view, int position) { }
                 });
 
                 return viewHolder;

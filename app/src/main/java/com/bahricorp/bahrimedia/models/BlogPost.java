@@ -8,16 +8,18 @@ public class BlogPost extends BlogPostId
     public String image;
     public String desc;
     public String userId;
+    public String price;
 
     public BlogPost() {}
 
-    public BlogPost(String name, String email, String title, String desc, String userId)
+    public BlogPost(String name, String email, String title, String desc, String userId, String price)
     {
         this.name = name;
         this.email = email;
         this.title = title;
         this.desc = desc;
         this.userId = userId;
+        this.price = price;
     }
 
     public String getName()
@@ -80,4 +82,13 @@ public class BlogPost extends BlogPostId
         this.userId = userId;
     }
 
+    public String getPrice()
+    {
+        return price;
+    }
+
+    public void setPrice(String price)
+    {
+        this.price = price;
+    }
 }

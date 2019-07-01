@@ -31,6 +31,8 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
     public static String imgUrl;
     public static String dscText;
     public static String uidText;
+    public static String nameTxt;
+    public static String emailTxt;
 
     private  SimpleRVAdapter.ClickListener mListener;
 
@@ -73,7 +75,7 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
         mListener = clickListener;
     }
 
-    public void setDetails(Context ctx, String blogTitle, String nameText, String emailText, String imageUrl, String descText, String userId)
+    public void setDetails(Context ctx, String blogTitle, String nameText, String emailText, String imageUrl, String descText, String userId, String price)
     {
         TextView textView = mView.findViewById(R.id.blog_title);
         textView.setText(blogTitle);
@@ -84,12 +86,34 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
         TextView emailTextView = mView.findViewById(R.id.user_email);
         emailTextView.setText(emailText);
 
+        TextView priceTextView = mView.findViewById(R.id.blog_price);
+        priceTextView.setText(price);
+
         ImageView imageView = mView.findViewById(R.id.blog_image);
         Picasso.get().load(imageUrl).into(imageView);
 
         dscText = descText;
         imgUrl = imageUrl;
         uidText = userId;
+    }
+
+    public void setProduct(Context ctx, String blogTitle, String nameText, String emailText, String imageUrl, String descText, String userId, String price)
+    {
+        TextView textView = mView.findViewById(R.id.blog_title);
+        textView.setText(blogTitle);
+
+        TextView priceTextView = mView.findViewById(R.id.blog_price);
+        priceTextView.setText(price);
+
+        ImageView imageView = mView.findViewById(R.id.blog_image);
+        Picasso.get().load(imageUrl).into(imageView);
+
+        dscText = descText;
+        imgUrl = imageUrl;
+        uidText = userId;
+
+        nameTxt = nameText;
+        emailTxt = emailText;
     }
 
     /**

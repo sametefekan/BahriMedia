@@ -21,6 +21,7 @@ public class PostDetailActivity extends AppCompatActivity
     public TextView nameTextView;
     public TextView emailTextView;
     public TextView descTextView;
+    public TextView priceTextView;
     public ImageView imageView;
     public Button chatButton;
 
@@ -50,6 +51,8 @@ public class PostDetailActivity extends AppCompatActivity
         descTextView = findViewById(R.id.blog_desc);
         chatButton = findViewById(R.id.button_chat);
 
+        priceTextView = findViewById(R.id.blog_price);
+
         // image view
         imageView = findViewById(R.id.blog_image);
 
@@ -61,6 +64,7 @@ public class PostDetailActivity extends AppCompatActivity
         final String uid = getIntent().getStringExtra("userId");
 
         String mImg = getIntent().getStringExtra("image");
+        String mPrice = getIntent().getStringExtra("price");
 
         // get image
         /*
@@ -73,6 +77,8 @@ public class PostDetailActivity extends AppCompatActivity
         nameTextView.setText(mName);
         emailTextView.setText(mEmail);
         descTextView.setText(mDesc);
+
+        priceTextView.setText(mPrice);
 
         Picasso.get().load(mImg).into(imageView);
 
