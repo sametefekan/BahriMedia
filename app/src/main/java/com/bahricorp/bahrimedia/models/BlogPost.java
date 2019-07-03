@@ -6,13 +6,16 @@ public class BlogPost extends BlogPostId
     public String email;
     public String title;
     public String image;
+    public String image2;
+    public String image3;
     public String desc;
     public String userId;
     public String price;
+    public String category;
 
     public BlogPost() {}
 
-    public BlogPost(String name, String email, String title, String desc, String userId, String price)
+    public BlogPost(String name, String email, String title, String desc, String userId, String price, String category)
     {
         this.name = name;
         this.email = email;
@@ -20,6 +23,7 @@ public class BlogPost extends BlogPostId
         this.desc = desc;
         this.userId = userId;
         this.price = price;
+        this.category = category;
     }
 
     public String getName()
@@ -72,6 +76,26 @@ public class BlogPost extends BlogPostId
         this.image = image;
     }
 
+    public String getImage2()
+    {
+        return image2;
+    }
+
+    public void setImage2(String image2)
+    {
+        this.image2 = image2;
+    }
+
+    public String getImage3()
+    {
+        return image3;
+    }
+
+    public void setImage3(String image3)
+    {
+        this.image3 = image3;
+    }
+
     public String getUid()
     {
         return userId;
@@ -90,5 +114,15 @@ public class BlogPost extends BlogPostId
     public void setPrice(String price)
     {
         this.price = price;
+    }
+
+    public String getCategory()
+    {
+        return category;
+    }
+
+    public void setCategory(String category)
+    {
+        this.category = category;
     }
 }

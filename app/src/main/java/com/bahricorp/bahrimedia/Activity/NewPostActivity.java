@@ -28,6 +28,7 @@ import com.bahricorp.bahrimedia.models.UserModel;
 import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,40 +49,54 @@ import java.util.Calendar;
 public class NewPostActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
     private Button buttonShare;
+
     private EditText postTitle;
     private EditText postDesc;
     private EditText postPrice;
+
     private ImageButton imageButton;
     private ImageButton imageButton2;
     private ImageButton imageButton3;
 
     private static final int GalleryPick = 1;
+    private static final int GalleryPick2 = 2;
+    private static final int GalleryPick3 = 3;
 
     // img Uri
     private Uri ImageUri;
+    private Uri ImageUri2;
+    private Uri ImageUri3;
 
     //Firebase
     private Firebase mRef;
     private StorageReference PostImagesRefrence;
 
     FirebaseDatabase firebaseDatabase;
+
     DatabaseReference mDatabase;
     DatabaseReference mDatabase1;
+
+    StorageReference filePath2;
+    StorageReference filePath3;
 
     private String saveCurrentDate, saveCurrentTime, postRandomName, generatedFilePath, Title, Description, Price, userName, category_text;
 
     private ProgressDialog progressDialog;
 
+    Uri imgUri;
+    int imgBtn = 0;
+
     private Spinner spinner;
+
     private static final String[] paths = {
-            "Cars",
-            "Real Estate",
-            "Electronic",
-            "House&Garden",
-            "Entertainment",
-            "Other Vehicles",
-            "Clothes&Accessories",
-            "Movie, Book&Music",
+            "cars",
+            "real-estate",
+            "electronic",
+            "house&garden",
+            "entertainment",
+            "other vehicles",
+            "clothes&accessories",
+            "movie, book&music",
             "Others"};
 
     @Override
@@ -132,7 +147,7 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onClick(View v)
             {
-                OpenGallery();
+                OpenGallery(1);
             }
         });
 
@@ -141,7 +156,7 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onClick(View v)
             {
-
+                OpenGallery(2);
             }
         });
 
@@ -150,7 +165,7 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onClick(View v)
             {
-
+                OpenGallery(3);
             }
         });
 
@@ -185,7 +200,7 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
                 // Whatever you want to happen when the thrid item gets selected
                 break;
             case 3:
-                category_text = "house-garden";
+                category_text = "house&garden";
                 // Whatever you want to happen when the thrid item gets selected
                 break;
             case 4:
@@ -193,15 +208,15 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
                 // Whatever you want to happen when the thrid item gets selected
                 break;
             case 5:
-                category_text = "other-vehicles";
+                category_text = "other vehicles";
                 // Whatever you want to happen when the thrid item gets selected
                 break;
             case 6:
-                category_text = "clothes-accessories";
+                category_text = "clothes&accessories";
                 // Whatever you want to happen when the thrid item gets selected
                 break;
             case 7:
-                category_text = "movie-book-music";
+                category_text = "movie, book&music";
                 // Whatever you want to happen when the thrid item gets selected
                 break;
             case 8:
@@ -225,15 +240,18 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
         return true;
     }
 
-    private void OpenGallery()
+    private void OpenGallery(int button)
     {
+        imgBtn = button;
+
         Intent galleryIntent = new Intent();
 
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
 
-        startActivityForResult(galleryIntent, GalleryPick);
+        startActivityForResult(galleryIntent, button);
     }
+
 
     @TargetApi(Build.VERSION_CODES.N)
     private void ValidatePostInfo()
@@ -299,6 +317,9 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
             ImageUri = data.getData();
             imageButton.setImageURI(ImageUri);
 
+            imgUri = ImageUri;
+            imgBtn = 1;
+
             // for Crop Image
             // start picker to get image for cropping and then use the image in cropping activity
             // CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(this);
@@ -310,14 +331,56 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
             //TODO: action
         }
 
+        if(requestCode == GalleryPick2)
+        {
+            ImageUri2 = data.getData();
+            imageButton2.setImageURI(ImageUri2);
+
+            imgUri = ImageUri2;
+            imgBtn = 2;
+
+            CropImage.activity(ImageUri2).setAspectRatio(16, 9).setBorderLineColor(Color.RED).start(this);
+        }
+
+        if(requestCode == GalleryPick3)
+        {
+            ImageUri3 = data.getData();
+            imageButton3.setImageURI(ImageUri3);
+
+            imgUri = ImageUri3;
+            imgBtn = 3;
+
+            CropImage.activity(ImageUri3).setAspectRatio(16, 9).setBorderLineColor(Color.RED).start(this);
+        }
+
         if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
         {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
             if(resultCode == RESULT_OK)
             {
+                // imgUri = result.getUri();
+
+                /*
                 ImageUri = result.getUri();
                 imageButton.setImageURI(ImageUri);
+                */
+
+                switch(imgBtn)
+                {
+                    case 1:
+                        ImageUri = result.getUri();
+                        imageButton.setImageURI(ImageUri);
+                        break;
+                    case 2:
+                        ImageUri2 = result.getUri();
+                        imageButton2.setImageURI(ImageUri2);
+                        break;
+                    case 3:
+                        ImageUri3 = result.getUri();
+                        imageButton3.setImageURI(ImageUri3);
+                        break;
+                }
             }
 
             else if(resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
@@ -353,8 +416,20 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
         // Storage location
         final StorageReference filePath = PostImagesRefrence.child(ImageUri.getLastPathSegment() + postRandomName + ".jpg"); // final StorageReference filePath = PostImagesRefrence.child("Post images").child(ImageUri.getLastPathSegment() + postRandomName + ".jpg");
 
+        if(ImageUri2 != null)
+        {
+            filePath2 = PostImagesRefrence.child(ImageUri2.getLastPathSegment() + postRandomName + ".jpg");
+        }
+
+        if(ImageUri3 != null)
+        {
+            filePath3 = PostImagesRefrence.child(ImageUri3.getLastPathSegment() + postRandomName + ".jpg");
+        }
+
         // Database location
-        mDatabase = firebaseDatabase.getReference().child("Post").child(postRandomName); //.child(category_text)
+        // original *** mDatabase = firebaseDatabase.getReference().child("Post").child(postRandomName);
+        mDatabase = firebaseDatabase.getReference().child("Post").child(postRandomName);
+        //                                                       .child(category_text)
 
         // add file on Firebase and got Download Link
         filePath.putFile(ImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()
@@ -392,6 +467,10 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
                     mDatabase.child("image").setValue(downUri.toString());
                     mDatabase.child("email").setValue(user.getEmail());
                     mDatabase.child("userId").setValue(user.getUid());
+
+                    // new
+                    mDatabase.child("category").setValue("Cars");
+                    //                                  (category_text)
                 }
                 else
                 {
@@ -400,5 +479,73 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
                 }
             }
         });
+
+        if(filePath2 != null)
+        {
+            filePath2.putFile(ImageUri2).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()
+            {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception
+                {
+                    if(!task.isSuccessful())
+                    {
+                        throw task.getException();
+                    }
+
+                    return filePath2.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>()
+            {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task)
+                {
+                    if(task.isSuccessful())
+                    {
+                        Uri downUri2 = task.getResult();
+
+                        mDatabase.child("image2").setValue(downUri2.toString());
+                    }
+                    else
+                    {
+                        String message = task.getException().getMessage();
+                        Toast.makeText(NewPostActivity.this, "Error" + message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        if(filePath3 != null)
+        {
+            filePath3.putFile(ImageUri3).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()
+            {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception
+                {
+                    if(!task.isSuccessful())
+                    {
+                        throw task.getException();
+                    }
+
+                    return filePath3.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>()
+            {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task)
+                {
+                    if(task.isSuccessful())
+                    {
+                        Uri downUri3 = task.getResult();
+
+                        mDatabase.child("image3").setValue(downUri3.toString());
+                    }
+                    else
+                    {
+                        String message = task.getException().getMessage();
+                        Toast.makeText(NewPostActivity.this, "Error" + message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 }

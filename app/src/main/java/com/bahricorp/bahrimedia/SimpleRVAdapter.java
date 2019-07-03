@@ -15,12 +15,9 @@ import java.util.ArrayList;
 
 // old
 // public class SimpleRVAdapter extends RecyclerView.Adapter<SimpleRVAdapter.SimpleViewHolder>
-
-// before
-// public class SimpleRVAdapter extends RecyclerView.ViewHolder
 public class SimpleRVAdapter extends RecyclerView.ViewHolder
 {
-    public ArrayList<BlogPost> mExampleList; //List<BlogPost>
+    public ArrayList<BlogPost> mExampleList;
     public Context mContext;
 
     private FirebaseFirestore firebaseFirestore;
@@ -33,21 +30,21 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
     public static String uidText;
     public static String nameTxt;
     public static String emailTxt;
+    public static String categoryTxt;
 
     private  SimpleRVAdapter.ClickListener mListener;
 
-    public SimpleRVAdapter(View itemView) // View itemView
+    public SimpleRVAdapter(View itemView)
     {
         super(itemView);
         mView = itemView;
-        // mExampleList = exampleList;
 
         itemView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                mListener.onItemClick(v, getAdapterPosition()); //View view, int position
+                mListener.onItemClick(v, getAdapterPosition());
             }
         });
 
@@ -66,7 +63,7 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
 
     public interface ClickListener
     {
-        void onItemClick(View view, int position); //View view, int position
+        void onItemClick(View view, int position);
         void onItemLongClick(View view, int position);
     }
 
@@ -97,7 +94,7 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
         uidText = userId;
     }
 
-    public void setProduct(Context ctx, String blogTitle, String nameText, String emailText, String imageUrl, String descText, String userId, String price)
+    public void setProduct(Context ctx, String blogTitle, String nameText, String emailText, String imageUrl, String descText, String userId, String price, String category)
     {
         TextView textView = mView.findViewById(R.id.blog_title);
         textView.setText(blogTitle);
@@ -114,6 +111,7 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
 
         nameTxt = nameText;
         emailTxt = emailText;
+        categoryTxt = category;
     }
 
     /**

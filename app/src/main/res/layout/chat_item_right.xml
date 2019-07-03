@@ -25,10 +25,11 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/background_right"
+            android:background="@color/colorBlue"
             android:padding="8dp"
             android:text="hello"
-            android:textColor="@color/colorBlack" />
+            android:textSize="16dp"
+            android:textColor="@color/colorWhite" />
 
     </RelativeLayout>
 

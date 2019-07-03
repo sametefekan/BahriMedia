@@ -1,10 +1,13 @@
 package com.bahricorp.bahrimedia.fragments;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.nfc.cardemulation.CardEmulation;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +16,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bahricorp.bahrimedia.Activity.ChatActivity;
+import com.bahricorp.bahrimedia.Activity.MainActivity;
+import com.bahricorp.bahrimedia.Activity.PostDetailActivity;
 import com.bahricorp.bahrimedia.Activity.UsersActivity;
 import com.bahricorp.bahrimedia.R;
 import com.bahricorp.bahrimedia.SimpleRVAdapter;
@@ -27,6 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CategoryFragment extends Fragment
 {
     private Bundle savedInstanceState;
+    public String categoryText;
 
     String[] strings = {
                     "Cars",
@@ -36,20 +44,19 @@ public class CategoryFragment extends Fragment
                     "Entertainment",
                     "Other Vehicles",
                     "Clothes&Accessories",
-                    "Movie, Book&Music",
-                    "Others", ""};
+                    "Movie,Book&Music",
+                    "Others"};
 
     private int[] imageArray = {
-            R.drawable.ic_directions_car_black_24dp,
-            R.drawable.ic_home_purple_24dp,
-            R.drawable.ic_phone_iphone_green_24dp,
-            R.drawable.ic_directions_car_black_24dp,
-            R.drawable.ic_home_purple_24dp,
-            R.drawable.ic_phone_iphone_green_24dp,
-            R.drawable.ic_directions_car_black_24dp,
-            R.drawable.ic_home_purple_24dp,
-            R.drawable.ic_phone_iphone_green_24dp,
-            R.mipmap.ic_launcher};
+            R.drawable.ic_car,
+            R.drawable.ic_house,
+            R.drawable.ic_smartphone,
+            R.drawable.ic_garden,
+            R.drawable.ic_entertainment,
+            R.drawable.ic_motorcycle,
+            R.drawable.ic_clothes,
+            R.drawable.ic_book,
+            R.drawable.ic_others};
 
     public RecyclerView recyclerView;
 
@@ -92,6 +99,7 @@ public class CategoryFragment extends Fragment
         private String[] dataSource;
         private int[] imageSource;
 
+
         public categoryAdapter(String[] dataArgs, int[] images)
         {
             dataSource = dataArgs;
@@ -107,15 +115,67 @@ public class CategoryFragment extends Fragment
         }
 
         @Override
-        public void onBindViewHolder(SimpleViewHolder holder, int position)
+        public void onBindViewHolder(SimpleViewHolder holder, final int position)
         {
             holder.textView.setText(dataSource[position]);
 
-            // old
-            // holder.image.setImageResource(imageSource[position]);
-
             Drawable d = getResources().getDrawable(imageSource[position]);
             holder.image.setImageDrawable(d);
+
+            // new for item click
+            holder.itemView.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    Intent intent = new Intent(view.getContext(), MainActivity.class);
+                    Bundle bundle = new Bundle();
+
+                    switch (position)
+                    {
+                        case 0:
+                            categoryText = "car";
+                            Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
+
+                            // deneme
+                            bundle.putString("category", categoryText);
+                            // Whatever you want to happen when the first item gets selected
+                            break;
+                        case 1:
+                            categoryText = "real-estate";
+                            Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
+                            break;
+                        case 2:
+                            categoryText = "electronic";
+                            Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
+                            break;
+                        case 3:
+                            categoryText = "house&garden";
+                            Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
+                            break;
+                        case 4:
+                            categoryText = "entertainment";
+                            Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
+                            break;
+                        case 5:
+                            categoryText = "other vehicles";
+                            Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
+                            break;
+                        case 6:
+                            categoryText = "clothes";
+                            Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
+                            break;
+                        case 7:
+                            categoryText = "movie, book&music";
+                            Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
+                            break;
+                        case 8:
+                            categoryText = "others";
+                            Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
+                            break;
+                    }
+                }
+            });
         }
 
         @Override
@@ -132,6 +192,7 @@ public class CategoryFragment extends Fragment
     {
         public TextView textView;
         public ImageView image;
+        public String categoryText;
 
         public SimpleViewHolder(View itemView)
         {

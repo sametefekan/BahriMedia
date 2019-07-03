@@ -1,6 +1,7 @@
 package com.bahricorp.bahrimedia.Activity;
 
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bahricorp.bahrimedia.R;
+import com.bahricorp.bahrimedia.ViewPagerAdapter;
 import com.bahricorp.bahrimedia.models.BlogPost;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,12 +19,10 @@ import com.squareup.picasso.Picasso;
 
 public class PostDetailActivity extends AppCompatActivity
 {
-    public TextView textView;
-    public TextView nameTextView;
-    public TextView emailTextView;
-    public TextView descTextView;
-    public TextView priceTextView;
+    public TextView textView, nameTextView, emailTextView, descTextView, priceTextView;
+
     public ImageView imageView;
+    public ViewPager viewPager;
     public Button chatButton;
 
     private FirebaseDatabase firebaseDatabase;
@@ -50,21 +50,40 @@ public class PostDetailActivity extends AppCompatActivity
         emailTextView = findViewById(R.id.user_email);
         descTextView = findViewById(R.id.blog_desc);
         chatButton = findViewById(R.id.button_chat);
-
         priceTextView = findViewById(R.id.blog_price);
 
-        // image view
-        imageView = findViewById(R.id.blog_image);
+        // image view // save
+        // imageView = findViewById(R.id.blog_image);
+
+        viewPager = findViewById(R.id.imageSlider);
 
         // get data from fragment
         String mTitle = getIntent().getStringExtra("title");
+        String mDesc = getIntent().getStringExtra("desc");
+        String mPrice = getIntent().getStringExtra("price");
+
         String mName = getIntent().getStringExtra("name");
         String mEmail = getIntent().getStringExtra("email");
-        String mDesc = getIntent().getStringExtra("desc");
         final String uid = getIntent().getStringExtra("userId");
 
         String mImg = getIntent().getStringExtra("image");
-        String mPrice = getIntent().getStringExtra("price");
+
+        // new
+        String mImg2 = getIntent().getStringExtra("image2");
+        String mImg3 = getIntent().getStringExtra("image3");
+
+
+        String[] strings = {mImg, mImg2, mImg3};
+
+        // Image Slider View
+        /*
+        SliderView sliderView = findViewById(R.id.imageSlider);
+        SliderAdapterExample adapter = new SliderAdapterExample(this, strings);
+        sliderView.setSliderAdapter(adapter);
+        */
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, strings);
+        viewPager.setAdapter(viewPagerAdapter);
 
         // get image
         /*
@@ -77,10 +96,10 @@ public class PostDetailActivity extends AppCompatActivity
         nameTextView.setText(mName);
         emailTextView.setText(mEmail);
         descTextView.setText(mDesc);
-
         priceTextView.setText(mPrice);
 
-        Picasso.get().load(mImg).into(imageView);
+        // save
+        // Picasso.get().load(mImg).into(imageView);
 
         chatButton.setOnClickListener(new View.OnClickListener()
         {
@@ -94,7 +113,6 @@ public class PostDetailActivity extends AppCompatActivity
                 intent.putExtra("userEmail", emailTextView.getText().toString());
 
                 startActivity(intent);
-
             }
         });
     }
