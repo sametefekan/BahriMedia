@@ -1,12 +1,17 @@
 package com.bahricorp.bahrimedia.Activity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+
+// import android.app.Fragment;
+// import android.app.FragmentTransaction;
+// import android.app.FragmentManager;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -15,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.bahricorp.bahrimedia.MyListener;
 import com.bahricorp.bahrimedia.R;
 import com.bahricorp.bahrimedia.fragments.CategoryFragment;
 import com.bahricorp.bahrimedia.fragments.HomeFragmentMain;
@@ -22,7 +28,7 @@ import com.bahricorp.bahrimedia.fragments.ProfileFragment;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements MyListener
 {
     private FrameLayout mMainFrame;
     private HomeFragmentMain homeFragmentMain;
@@ -62,7 +68,21 @@ public class MainActivity extends AppCompatActivity
         });
 
         // new 12.06.19
-        setFragment(homeFragmentMain);
+        setFragment(homeFragmentMain, "home_fragment");
+    }
+
+    @Override
+    public void getData(String data)
+    {
+        // FragmentManager manager = getSupportFragmentManager();
+        // FragmentManager manager = getFragmentManager();
+        // .findFragmentByTag("home_fragment")
+
+        //HomeFragmentMain fragmentB = (HomeFragmentMain) getFragmentManager().findFragmentByTag("home_fragment");
+        HomeFragmentMain fragmentB = (HomeFragmentMain) getSupportFragmentManager().findFragmentById(R.id.main_frame);
+        //.findFragmentById(R.id.main_frame)
+
+        fragmentB.getData(data);
     }
 
     @Override
@@ -100,7 +120,7 @@ public class MainActivity extends AppCompatActivity
             switch(item.getItemId())
             {
                 case R.id.navigation_home:
-                    setFragment(homeFragmentMain);
+                    setFragment(homeFragmentMain, "home_fragment");
 
                     // post button on
                     postButton.setVisibility(View.VISIBLE);
@@ -110,7 +130,7 @@ public class MainActivity extends AppCompatActivity
                     return true;
 
                 case R.id.navigation_category:
-                    setFragment(categoryFragment);
+                    setFragment(categoryFragment, "category_fragment");
 
                     // post button off
                     postButton.setVisibility(View.INVISIBLE);
@@ -120,7 +140,7 @@ public class MainActivity extends AppCompatActivity
                     return true;
 
                 case R.id.navigation_profile:
-                    setFragment(profileFragment);
+                    setFragment(profileFragment, "profile_fragment");
 
                     // post button off
                     postButton.setVisibility(View.INVISIBLE);
@@ -133,11 +153,25 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
-    private void setFragment(Fragment fragment)
+    private void setFragment(Fragment fragment, String tag)
     {
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_frame, fragment, "MY_FRAGMENT");
+        // old
+        //FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
+        // new
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.replace(R.id.main_frame, fragment, tag);
         fragmentTransaction.commit();
+
+        // new
+        /*
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
+        */
 
         // get current Fragment
         // HomeFragmentMain myFragment = (HomeFragmentMain) getFragmentManager().findFragmentByTag("MY_FRAGMENT");

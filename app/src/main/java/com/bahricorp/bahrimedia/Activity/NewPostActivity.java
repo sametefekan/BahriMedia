@@ -469,8 +469,7 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
                     mDatabase.child("userId").setValue(user.getUid());
 
                     // new
-                    mDatabase.child("category").setValue("Cars");
-                    //                                  (category_text)
+                    mDatabase.child("category").setValue(category_text);
                 }
                 else
                 {

@@ -1,20 +1,23 @@
 package com.bahricorp.bahrimedia.fragments;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+
+// import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bahricorp.bahrimedia.Activity.MainActivity;
 import com.bahricorp.bahrimedia.Activity.PostDetailActivity;
 import com.bahricorp.bahrimedia.R;
 import com.bahricorp.bahrimedia.SimpleRVAdapter;
@@ -76,7 +79,25 @@ public class HomeFragmentMain extends Fragment
         firebaseDatabase = FirebaseDatabase.getInstance();
         // original *** // mDatabase = firebaseDatabase.getReference("Post");
 
+        Intent intent = new Intent(view.getContext(), MainActivity.class);
+        // .getContext()
         // new
+        // Bundle bundle = getArguments();
+        // Bundle b = getActivity().getIntent().getExtras();
+
+        Intent intentReceived = getActivity().getIntent();
+        Bundle data = intentReceived.getExtras();
+        if(data != null)
+        {
+            Toast.makeText(getActivity().getApplicationContext(), "sex", Toast.LENGTH_LONG).show();
+            category_text = data.getString("category");
+        }
+        else
+        {
+            Toast.makeText(getActivity().getApplicationContext(), "fuck", Toast.LENGTH_LONG).show();
+            category_text = "others";
+        }
+
         mDatabase = firebaseDatabase.getReference("Post");
         Query query = mDatabase.orderByChild("category").equalTo(category_text);
 
@@ -202,8 +223,9 @@ public class HomeFragmentMain extends Fragment
         // PhotoBlogApp Repository (examples)
     }
 
-    public void displayReceivedData(String message)
+
+    public void getData(String data)
     {
-        category_text = message;
+        category_text = data;
     }
 }

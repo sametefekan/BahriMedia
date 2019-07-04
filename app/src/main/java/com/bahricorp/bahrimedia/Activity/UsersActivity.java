@@ -188,7 +188,7 @@ public class UsersActivity extends AppCompatActivity
                         {
                             if (mUsers.size() != 0)
                             {
-                                for (UserModel user1 : mUsers)
+                                for(UserModel user1 : mUsers)
                                 {
                                     if(!user.getId().equals(user1.getId()))
                                     {
