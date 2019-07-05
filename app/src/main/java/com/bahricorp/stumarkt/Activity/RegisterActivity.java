@@ -1,4 +1,4 @@
-package com.bahricorp.bahrimedia.Activity;
+package com.bahricorp.stumarkt.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bahricorp.bahrimedia.R;
+import com.bahricorp.stumarkt.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

@@ -1,7 +1,6 @@
-package com.bahricorp.bahrimedia.Activity;
+package com.bahricorp.stumarkt.Activity;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,17 +8,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bahricorp.bahrimedia.R;
-import com.bahricorp.bahrimedia.SimpleRVAdapter;
-import com.bahricorp.bahrimedia.UserAdapter;
-import com.bahricorp.bahrimedia.models.ChatModel;
-import com.bahricorp.bahrimedia.models.UserModel;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.bahricorp.stumarkt.R;
+import com.bahricorp.stumarkt.UserAdapter;
+import com.bahricorp.stumarkt.models.ChatModel;
+import com.bahricorp.stumarkt.models.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.List;

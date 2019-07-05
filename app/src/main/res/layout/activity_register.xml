@@ -2,24 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorBlue"
+    android:background="@color/colorWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="16dp"
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingLeft="16dp"
-    tools:context="com.bahricorp.bahrimedia.Activity.RegisterActivity">
+    tools:context="com.bahricorp.stumarkt.Activity.RegisterActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="120dp"
-        android:orientation="vertical">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="160dp">
 
         <EditText
             android:id="@+id/editTextId"
@@ -83,12 +83,10 @@
             android:elevation="1dp"
             android:text="Sign in"
             android:textAlignment="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorOrange"
             android:textSize="25sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
-
-
     </LinearLayout>
 
     <TextView
@@ -96,20 +94,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="110dp"
         android:text="Register"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorOrange"
         android:textSize="38dp"
         android:textStyle="bold"
         tools:ignore="HardcodedText,SpUsage" />
 
     <ImageView
         android:id="@+id/ivLogoSignIn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginBottom="40dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="-10dp"
         android:layout_centerHorizontal="true"
-        app:srcCompat="?android:attr/fingerprintAuthDrawable"
+        app:srcCompat="@drawable/stumarkt_logo"
         tools:ignore="ContentDescription,NewApi" />
 </RelativeLayout>

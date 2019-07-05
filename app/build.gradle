@@ -3,20 +3,30 @@ apply plugin: 'com.google.gms.google-services'
 
 android
         {
+            signingConfigs {
+                config {
+                    keyAlias 'key'
+                    keyPassword '123456'
+                    storeFile file('C:/Users/melih/Documents/stumarkt.jks')
+                    storePassword '123456'
+                }
+            }
             compileSdkVersion 27
             defaultConfig {
-                applicationId "com.bahricorp.bahrimedia"
+                applicationId "com.bahricorp.stumarkt" //.bahrimedia
                 minSdkVersion 21
                 targetSdkVersion 27
                 versionCode 1
                 versionName "1.0"
                 testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
                 vectorDrawables.useSupportLibrary = true
+                signingConfig signingConfigs.config
             }
             buildTypes {
                 release {
                     minifyEnabled false
                     proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                    signingConfig signingConfigs.config
                 }
             }
             productFlavors {
@@ -49,5 +59,7 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
     implementation 'com.ss.bannerslider:bannerslider:2.0.0'
     implementation 'com.github.smarteist:autoimageslider:1.3.2'
+    implementation 'com.google.android.gms:play-services-auth:11.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    api 'com.github.tcking:giraffeplayer2:0.1.25-lazyLoad'
 }

@@ -1,21 +1,15 @@
-package com.bahricorp.bahrimedia.models;
+package com.bahricorp.stumarkt.models;
 
 public class BlogPost extends BlogPostId
 {
-    public String name;
-    public String email;
-    public String title;
     public String image;
     public String image2;
     public String image3;
-    public String desc;
-    public String userId;
-    public String price;
-    public String category;
+    public String name, email, title, desc, userId, price, category, sex;
 
     public BlogPost() {}
 
-    public BlogPost(String name, String email, String title, String desc, String userId, String price, String category)
+    public BlogPost(String name, String email, String title, String desc, String userId, String price, String category, String sex)
     {
         this.name = name;
         this.email = email;
@@ -24,6 +18,7 @@ public class BlogPost extends BlogPostId
         this.userId = userId;
         this.price = price;
         this.category = category;
+        this.sex = sex;
     }
 
     public String getName()
@@ -124,5 +119,15 @@ public class BlogPost extends BlogPostId
     public void setCategory(String category)
     {
         this.category = category;
+    }
+
+    public String getSex()
+    {
+        return sex;
+    }
+
+    public void setSex(String sex)
+    {
+        this.sex = sex;
     }
 }

@@ -1,4 +1,4 @@
-package com.bahricorp.bahrimedia;
+package com.bahricorp.stumarkt;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bahricorp.bahrimedia.models.BlogPost;
+import com.bahricorp.stumarkt.models.BlogPost;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -14,7 +14,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 // old
-// public class SimpleRVAdapter extends RecyclerView.Adapter<SimpleRVAdapter.SimpleViewHolder>
+// extends RecyclerView.Adapter<SimpleRVAdapter.SimpleViewHolder>
+// extends RecyclerView.ViewHolder
 public class SimpleRVAdapter extends RecyclerView.ViewHolder
 {
     public ArrayList<BlogPost> mExampleList;
@@ -25,17 +26,13 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
 
     View mView;
 
-    public static String imgUrl;
-    public static String dscText;
-    public static String uidText;
-    public static String nameTxt;
-    public static String emailTxt;
-    public static String categoryTxt;
+    public static String imgUrl, dscText, uidText, nameTxt, emailTxt, categoryTxt, sexTxt;
 
     private  SimpleRVAdapter.ClickListener mListener;
 
     public SimpleRVAdapter(View itemView)
     {
+        // RecyclerView.ViewHolder
         super(itemView);
         mView = itemView;
 
@@ -44,10 +41,12 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
             @Override
             public void onClick(View v)
             {
+                // RecyclerView.ViewHolder
                 mListener.onItemClick(v, getAdapterPosition());
             }
         });
 
+         // RecyclerView.ViewHolder
         /*
         itemView.setOnClickListener(new View.OnLongClickListener()
         {
@@ -61,6 +60,7 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
         */
     }
 
+    // deneme
     public interface ClickListener
     {
         void onItemClick(View view, int position);
@@ -94,7 +94,7 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
         uidText = userId;
     }
 
-    public void setProduct(Context ctx, String blogTitle, String nameText, String emailText, String imageUrl, String descText, String userId, String price, String category)
+    public void setProduct(Context ctx, String blogTitle, String nameText, String emailText, String imageUrl, String descText, String userId, String price, String category, String sex)
     {
         TextView textView = mView.findViewById(R.id.blog_title);
         textView.setText(blogTitle);
@@ -112,6 +112,7 @@ public class SimpleRVAdapter extends RecyclerView.ViewHolder
         nameTxt = nameText;
         emailTxt = emailText;
         categoryTxt = category;
+        sexTxt = sex;
     }
 
     /**

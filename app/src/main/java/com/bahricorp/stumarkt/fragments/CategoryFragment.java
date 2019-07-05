@@ -1,10 +1,8 @@
-package com.bahricorp.bahrimedia.fragments;
+package com.bahricorp.stumarkt.fragments;
 
 // import android.app.Fragment;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -14,13 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.bahricorp.bahrimedia.Activity.MainActivity;
-import com.bahricorp.bahrimedia.MyListener;
-import com.bahricorp.bahrimedia.R;
+import com.bahricorp.stumarkt.Activity.MainActivity;
+import com.bahricorp.stumarkt.MyListener;
+import com.bahricorp.stumarkt.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +28,7 @@ public class CategoryFragment extends Fragment
     public String categoryText;
 
     String[] strings = {
+                    "All",
                     "Cars",
                     "Real Estate",
                     "Electronic",
@@ -42,6 +40,7 @@ public class CategoryFragment extends Fragment
                     "Others"};
 
     private int[] imageArray = {
+            R.drawable.baseline_dashboard_black_24dp,
             R.drawable.ic_car,
             R.drawable.ic_house,
             R.drawable.ic_smartphone,
@@ -140,6 +139,14 @@ public class CategoryFragment extends Fragment
                     switch (position)
                     {
                         case 0:
+                            categoryText = "sex";
+                            Toast.makeText(getActivity().getApplicationContext(), "All", Toast.LENGTH_LONG).show();
+                            bundle.putString("category", categoryText);
+                            fragmentMain.setArguments(bundle);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                            break;
+                        case 1:
                             categoryText = "cars";
                             Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
                             //sendData();
@@ -150,7 +157,7 @@ public class CategoryFragment extends Fragment
                             intent.putExtras(bundle);
                             startActivity(intent);
                             break;
-                        case 1:
+                        case 2:
                             categoryText = "real-estate";
                             Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
                             bundle.putString("category", categoryText);
@@ -158,7 +165,7 @@ public class CategoryFragment extends Fragment
                             intent.putExtras(bundle);
                             startActivity(intent);
                             break;
-                        case 2:
+                        case 3:
                             categoryText = "electronic";
                             Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
                             bundle.putString("category", categoryText);
@@ -166,7 +173,7 @@ public class CategoryFragment extends Fragment
                             intent.putExtras(bundle);
                             startActivity(intent);
                             break;
-                        case 3:
+                        case 4:
                             categoryText = "house&garden";
                             Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
                             bundle.putString("category", categoryText);
@@ -174,7 +181,7 @@ public class CategoryFragment extends Fragment
                             intent.putExtras(bundle);
                             startActivity(intent);
                             break;
-                        case 4:
+                        case 5:
                             categoryText = "entertainment";
                             Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
                             bundle.putString("category", categoryText);
@@ -182,7 +189,7 @@ public class CategoryFragment extends Fragment
                             intent.putExtras(bundle);
                             startActivity(intent);
                             break;
-                        case 5:
+                        case 6:
                             categoryText = "other vehicles";
                             Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
                             bundle.putString("category", categoryText);
@@ -190,7 +197,7 @@ public class CategoryFragment extends Fragment
                             intent.putExtras(bundle);
                             startActivity(intent);
                             break;
-                        case 6:
+                        case 7:
                             categoryText = "clothes&accessories";
                             Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
                             bundle.putString("category", categoryText);
@@ -198,7 +205,7 @@ public class CategoryFragment extends Fragment
                             intent.putExtras(bundle);
                             startActivity(intent);
                             break;
-                        case 7:
+                        case 8:
                             categoryText = "movie, book&music";
                             Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
                             bundle.putString("category", categoryText);
@@ -206,7 +213,7 @@ public class CategoryFragment extends Fragment
                             intent.putExtras(bundle);
                             startActivity(intent);
                             break;
-                        case 8:
+                        case 9:
                             categoryText = "others";
                             Toast.makeText(getActivity().getApplicationContext(), categoryText, Toast.LENGTH_LONG).show();
                             bundle.putString("category", categoryText);

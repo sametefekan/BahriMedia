@@ -1,4 +1,4 @@
-package com.bahricorp.bahrimedia.models;
+package com.bahricorp.stumarkt.models;
 
 import android.support.annotation.NonNull;
 

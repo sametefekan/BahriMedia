@@ -1,4 +1,4 @@
-package com.bahricorp.bahrimedia.Activity;
+package com.bahricorp.stumarkt.Activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -10,15 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.bahricorp.bahrimedia.MessageAdapter;
-import com.bahricorp.bahrimedia.R;
-import com.bahricorp.bahrimedia.models.ChatModel;
-import com.bahricorp.bahrimedia.models.UserModel;
+import com.bahricorp.stumarkt.MessageAdapter;
+import com.bahricorp.stumarkt.R;
+import com.bahricorp.stumarkt.models.ChatModel;
+import com.bahricorp.stumarkt.models.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

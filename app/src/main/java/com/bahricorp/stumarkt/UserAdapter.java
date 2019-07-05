@@ -1,4 +1,4 @@
-package com.bahricorp.bahrimedia;
+package com.bahricorp.stumarkt;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bahricorp.bahrimedia.Activity.ChatActivity;
-import com.bahricorp.bahrimedia.Activity.UsersActivity;
-import com.bahricorp.bahrimedia.models.UserModel;
-import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
+import com.bahricorp.stumarkt.Activity.ChatActivity;
+import com.bahricorp.stumarkt.models.UserModel;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.bahricorp.bahrimedia.Activity;
+package com.bahricorp.stumarkt.Activity;
 
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
@@ -10,12 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bahricorp.bahrimedia.R;
-import com.bahricorp.bahrimedia.ViewPagerAdapter;
-import com.bahricorp.bahrimedia.models.BlogPost;
+import com.bahricorp.stumarkt.R;
+import com.bahricorp.stumarkt.ViewPagerAdapter;
+import com.bahricorp.stumarkt.models.BlogPost;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 public class PostDetailActivity extends AppCompatActivity
 {
@@ -37,6 +36,7 @@ public class PostDetailActivity extends AppCompatActivity
 
         // Action bar
         ActionBar actionBar = getSupportActionBar();
+
         // Action bar title
         actionBar.setTitle("Post");
 
@@ -46,11 +46,11 @@ public class PostDetailActivity extends AppCompatActivity
 
         // Text Views find
         textView = findViewById(R.id.blog_title);
+        descTextView = findViewById(R.id.blog_desc);
         nameTextView = findViewById(R.id.user_name);
         emailTextView = findViewById(R.id.user_email);
-        descTextView = findViewById(R.id.blog_desc);
-        chatButton = findViewById(R.id.button_chat);
         priceTextView = findViewById(R.id.blog_price);
+        chatButton = findViewById(R.id.button_chat);
 
         // image view // save
         // imageView = findViewById(R.id.blog_image);
@@ -60,27 +60,20 @@ public class PostDetailActivity extends AppCompatActivity
         // get data from fragment
         String mTitle = getIntent().getStringExtra("title");
         String mDesc = getIntent().getStringExtra("desc");
-        String mPrice = getIntent().getStringExtra("price");
 
         String mName = getIntent().getStringExtra("name");
         String mEmail = getIntent().getStringExtra("email");
         final String uid = getIntent().getStringExtra("userId");
 
-        String mImg = getIntent().getStringExtra("image");
+        // price string from intent
+        String mPrice = getIntent().getStringExtra("price");
 
-        // new
+        // image addresses
+        String mImg = getIntent().getStringExtra("image");
         String mImg2 = getIntent().getStringExtra("image2");
         String mImg3 = getIntent().getStringExtra("image3");
 
-
         String[] strings = {mImg, mImg2, mImg3};
-
-        // Image Slider View
-        /*
-        SliderView sliderView = findViewById(R.id.imageSlider);
-        SliderAdapterExample adapter = new SliderAdapterExample(this, strings);
-        sliderView.setSliderAdapter(adapter);
-        */
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, strings);
         viewPager.setAdapter(viewPagerAdapter);
@@ -93,9 +86,9 @@ public class PostDetailActivity extends AppCompatActivity
         */
 
         textView.setText(mTitle);
+        descTextView.setText(mDesc);
         nameTextView.setText(mName);
         emailTextView.setText(mEmail);
-        descTextView.setText(mDesc);
         priceTextView.setText(mPrice);
 
         // save

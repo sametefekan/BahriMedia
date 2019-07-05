@@ -1,4 +1,4 @@
-package com.bahricorp.bahrimedia.Activity;
+package com.bahricorp.stumarkt.Activity;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
@@ -21,14 +21,11 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.bahricorp.bahrimedia.R;
-import com.bahricorp.bahrimedia.UserAdapter;
-import com.bahricorp.bahrimedia.models.BlogPost;
-import com.bahricorp.bahrimedia.models.UserModel;
+import com.bahricorp.stumarkt.R;
+import com.bahricorp.stumarkt.models.UserModel;
 import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,7 +38,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -50,22 +46,16 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
 {
     private Button buttonShare;
 
-    private EditText postTitle;
-    private EditText postDesc;
-    private EditText postPrice;
+    private EditText postTitle, postDesc, postPrice;
 
-    private ImageButton imageButton;
-    private ImageButton imageButton2;
-    private ImageButton imageButton3;
+    private ImageButton imageButton, imageButton2, imageButton3;
 
     private static final int GalleryPick = 1;
     private static final int GalleryPick2 = 2;
     private static final int GalleryPick3 = 3;
 
     // img Uri
-    private Uri ImageUri;
-    private Uri ImageUri2;
-    private Uri ImageUri3;
+    private Uri ImageUri, ImageUri2, ImageUri3;
 
     //Firebase
     private Firebase mRef;
@@ -73,11 +63,9 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
 
     FirebaseDatabase firebaseDatabase;
 
-    DatabaseReference mDatabase;
-    DatabaseReference mDatabase1;
+    DatabaseReference mDatabase, mDatabase1;
 
-    StorageReference filePath2;
-    StorageReference filePath3;
+    StorageReference filePath2, filePath3;
 
     private String saveCurrentDate, saveCurrentTime, postRandomName, generatedFilePath, Title, Description, Price, userName, category_text;
 
@@ -107,6 +95,7 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
 
         // Action bar
         ActionBar actionBar = getSupportActionBar();
+
         // Action bar title
         actionBar.setTitle("New Post");
 
@@ -189,39 +178,30 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
         {
             case 0:
                 category_text = "cars";
-                // Whatever you want to happen when the first item gets selected
                 break;
             case 1:
                 category_text = "real-estate";
-                // Whatever you want to happen when the second item gets selected
                 break;
             case 2:
                 category_text = "electronic";
-                // Whatever you want to happen when the thrid item gets selected
                 break;
             case 3:
                 category_text = "house&garden";
-                // Whatever you want to happen when the thrid item gets selected
                 break;
             case 4:
                 category_text = "entertainment";
-                // Whatever you want to happen when the thrid item gets selected
                 break;
             case 5:
                 category_text = "other vehicles";
-                // Whatever you want to happen when the thrid item gets selected
                 break;
             case 6:
                 category_text = "clothes&accessories";
-                // Whatever you want to happen when the thrid item gets selected
                 break;
             case 7:
                 category_text = "movie, book&music";
-                // Whatever you want to happen when the thrid item gets selected
                 break;
             case 8:
                 category_text = "others";
-                // Whatever you want to happen when the thrid item gets selected
                 break;
         }
     }
@@ -360,7 +340,6 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
             if(resultCode == RESULT_OK)
             {
                 // imgUri = result.getUri();
-
                 /*
                 ImageUri = result.getUri();
                 imageButton.setImageURI(ImageUri);
@@ -461,15 +440,16 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
 
                     mDatabase.child("title").setValue(Title);
                     mDatabase.child("desc").setValue(Description);
-                    mDatabase.child("name").setValue(userName);
-                    mDatabase.child("price").setValue(Price + "€");
 
+                    mDatabase.child("category").setValue(category_text);
+
+                    mDatabase.child("price").setValue(Price + "€");
                     mDatabase.child("image").setValue(downUri.toString());
+                    mDatabase.child("sex").setValue("sex");
+
+                    mDatabase.child("name").setValue(userName);
                     mDatabase.child("email").setValue(user.getEmail());
                     mDatabase.child("userId").setValue(user.getUid());
-
-                    // new
-                    mDatabase.child("category").setValue(category_text);
                 }
                 else
                 {

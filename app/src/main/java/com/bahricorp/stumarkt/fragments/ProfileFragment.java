@@ -1,10 +1,8 @@
-package com.bahricorp.bahrimedia.fragments;
+package com.bahricorp.stumarkt.fragments;
 
 // import android.app.Fragment;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.bahricorp.bahrimedia.R;
-import com.bahricorp.bahrimedia.Activity.RegisterActivity;
+import com.bahricorp.stumarkt.R;
+import com.bahricorp.stumarkt.Activity.RegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

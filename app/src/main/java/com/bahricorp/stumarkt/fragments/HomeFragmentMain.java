@@ -1,8 +1,6 @@
-package com.bahricorp.bahrimedia.fragments;
+package com.bahricorp.stumarkt.fragments;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 // import android.app.Fragment;
 import android.content.Intent;
@@ -15,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bahricorp.bahrimedia.Activity.MainActivity;
-import com.bahricorp.bahrimedia.Activity.PostDetailActivity;
-import com.bahricorp.bahrimedia.R;
-import com.bahricorp.bahrimedia.SimpleRVAdapter;
-import com.bahricorp.bahrimedia.models.BlogPost;
+import com.bahricorp.stumarkt.Activity.MainActivity;
+import com.bahricorp.stumarkt.Activity.PostDetailActivity;
+import com.bahricorp.stumarkt.R;
+import com.bahricorp.stumarkt.SimpleRVAdapter;
+import com.bahricorp.stumarkt.Activity.VideoActivity;
+import com.bahricorp.stumarkt.models.BlogPost;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -87,23 +85,37 @@ public class HomeFragmentMain extends Fragment
 
         Intent intentReceived = getActivity().getIntent();
         Bundle data = intentReceived.getExtras();
+
+        mDatabase = firebaseDatabase.getReference("Post");
+
         if(data != null)
         {
-            Toast.makeText(getActivity().getApplicationContext(), "sex", Toast.LENGTH_LONG).show();
+            // Toast.makeText(getActivity().getApplicationContext(), "sex", Toast.LENGTH_LONG).show();
             category_text = data.getString("category");
+
+            if(category_text.equals("sex"))
+            {
+                query = mDatabase.orderByChild("sex").equalTo("sex");
+            }
+            else
+            {
+                query = mDatabase.orderByChild("category").equalTo(category_text);
+            }
         }
         else
         {
-            Toast.makeText(getActivity().getApplicationContext(), "fuck", Toast.LENGTH_LONG).show();
-            category_text = "others";
+            // Toast.makeText(getActivity().getApplicationContext(), "fuck", Toast.LENGTH_LONG).show();
+            query = mDatabase.orderByChild("sex").equalTo("sex");
+            // category_text = "others";
         }
 
-        mDatabase = firebaseDatabase.getReference("Post");
-        Query query = mDatabase.orderByChild("category").equalTo(category_text);
+        // query = mDatabase.orderByChild("category").equalTo(category_text);
 
         // R.layout.card
         // R.layout.card_product
         // original // (BlogPost.class, R.layout.card_product, SimpleRVAdapter.class, mDatabase)
+
+        // SimpleRVAdapter not SimpleRVAdapter.SimpleViewHolder
         FirebaseRecyclerAdapter<BlogPost, SimpleRVAdapter> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<BlogPost, SimpleRVAdapter>(BlogPost.class, R.layout.card_product, SimpleRVAdapter.class, query) //R.layout.card
         {
             @Override
@@ -112,27 +124,28 @@ public class HomeFragmentMain extends Fragment
                 // old one
                 // rvAdapter.setDetails(container.getContext(), model.getTitle(), model.getName(), model.getEmail(), model.getImage(), model.getDesc(), model.getUid(), model.getPrice());
 
-                rvAdapter.setProduct(container.getContext(), model.getTitle(), model.getName(), model.getEmail(), model.getImage(), model.getDesc(), model.getUid(), model.getPrice(), model.getCategory());
+                rvAdapter.setProduct(container.getContext(), model.getTitle(), model.getName(), model.getEmail(), model.getImage(), model.getDesc(), model.getUid(), model.getPrice(), model.getCategory(), model.getSex());
 
                 rvAdapter.setOnClickListener(new SimpleRVAdapter.ClickListener()
                 {
                     @Override
                     public void onItemClick(View view, int position)
                     {
-                        uid = model.getUid();
                         desc = model.getDesc();
-                        image = model.getImage();
-
-                        mName = model.getName();
-                        mEmail = model.getEmail();
                         price = model.getPrice();
 
+                        uid = model.getUid();
+                        mName = model.getName();
+                        mEmail = model.getEmail();
+
+                        image = model.getImage();
                         image2 = model.getImage2();
                         image3 = model.getImage3();
 
                         // views find
                         ImageView imageView = (ImageView) view.findViewById(R.id.blog_image);
                         TextView titleTextView = (TextView) view.findViewById(R.id.blog_title);
+                        TextView priceTextView = (TextView) view.findViewById(R.id.blog_price);
 
                         // old
                         // TextView nameTextView = (TextView) view.findViewById(R.id.user_name);
@@ -142,12 +155,8 @@ public class HomeFragmentMain extends Fragment
                         // String mName = nameTextView.getText().toString();
                         // String mEmail = emailTextView.getText().toString();
 
-                        // new
-                        TextView priceTextView = (TextView) view.findViewById(R.id.blog_price);
-
                         //get data from views
                         String mTitle = titleTextView.getText().toString();
-
                         price = priceTextView.getText().toString();
 
                         // get image
@@ -158,6 +167,7 @@ public class HomeFragmentMain extends Fragment
 
                         // pass this data to new activity
                         Intent intent = new Intent(view.getContext(), PostDetailActivity.class);
+                        // Intent intent = new Intent(view.getContext(), VideoActivity.class);
 
                         /*
                         // image

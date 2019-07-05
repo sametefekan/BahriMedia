@@ -1,7 +1,6 @@
-package com.bahricorp.bahrimedia.Activity;
+package com.bahricorp.stumarkt.Activity;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 // import android.app.Fragment;
@@ -20,13 +19,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import com.bahricorp.bahrimedia.MyListener;
-import com.bahricorp.bahrimedia.R;
-import com.bahricorp.bahrimedia.fragments.CategoryFragment;
-import com.bahricorp.bahrimedia.fragments.HomeFragmentMain;
-import com.bahricorp.bahrimedia.fragments.ProfileFragment;
-
-import java.util.List;
+import com.bahricorp.stumarkt.MyListener;
+import com.bahricorp.stumarkt.R;
+import com.bahricorp.stumarkt.fragments.CategoryFragment;
+import com.bahricorp.stumarkt.fragments.HomeFragmentMain;
+import com.bahricorp.stumarkt.fragments.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity implements MyListener
 {

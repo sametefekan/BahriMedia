@@ -58,8 +58,10 @@
         android:ems="10"
         android:hint="Title Write Here"
         android:inputType="textMultiLine"
-        android:maxLength="125"
+        android:maxLength="70"
         android:padding="16dp"
+        android:maxLines="1"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_post_image" />
@@ -74,8 +76,9 @@
         android:ems="10"
         android:hint="Description Write Here"
         android:inputType="textMultiLine"
-        android:maxLength="125"
+        android:maxLength="300"
         android:padding="16dp"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_post_title" />
@@ -89,9 +92,10 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Price"
-        android:inputType="textMultiLine"
+        android:inputType="number"
         android:maxLength="10"
         android:padding="10dp"
+        android:singleLine="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_post_desc" />
 
