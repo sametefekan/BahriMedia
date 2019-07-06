@@ -60,6 +60,10 @@ dependencies {
     implementation 'com.ss.bannerslider:bannerslider:2.0.0'
     implementation 'com.github.smarteist:autoimageslider:1.3.2'
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
+    implementation 'com.uniquestudio:parsingplayer:2.0.6'
+    // implementation 'com.google.android.exoplayer:exoplayer:2.7.3'
+    // implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    // implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
-    api 'com.github.tcking:giraffeplayer2:0.1.25-lazyLoad'
+    // api 'com.github.tcking:giraffeplayer2:0.1.25-full'
 }
