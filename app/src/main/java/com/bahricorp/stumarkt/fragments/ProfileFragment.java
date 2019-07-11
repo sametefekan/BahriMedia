@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bahricorp.stumarkt.R;
@@ -29,6 +30,7 @@ public class ProfileFragment extends Fragment
     private TextView textViewUserEmail;
     private Button buttonLogout;
     private Button menuButton;
+    private ImageView profilePhoto;
 
     public ProfileFragment()
     {
@@ -47,10 +49,20 @@ public class ProfileFragment extends Fragment
         textViewUserEmail = (TextView) view.findViewById(R.id.textViewEmail);
         buttonLogout = (Button) view.findViewById(R.id.buttonLogout01);
         menuButton = (Button) view.findViewById(R.id.buttonHome);
+        profilePhoto = (ImageView) view.findViewById(R.id.profilePhoto);
 
         assert user != null;
 
-        textViewUserEmail.setText("Welcome  " + user.getEmail());
+        textViewUserEmail.setText("Hey  " + user.getEmail());
+
+        profilePhoto.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
 
         buttonLogout.setOnClickListener(new View.OnClickListener()
         {

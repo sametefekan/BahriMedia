@@ -16,5 +16,7 @@
     <color name="indigo">#FF00FB</color>
     <color name="colorMagenta">#FF0080</color>
     <color name="colorGrey">#DFDFDF</color>
-
+    <color name="colorStumarkt1">#FFB55E</color>
+    <color name="colorStumarkt2">#FB4C8D</color>
+    <color name="colorStumarkt3">#FF7F7E</color>
 </resources>

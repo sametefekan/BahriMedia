@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements MyListener
             }
         });
 
-        // new 12.06.19
         setFragment(homeFragmentMain, "home_fragment");
     }
 
@@ -133,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements MyListener
                     postButton.setVisibility(View.INVISIBLE);
 
                     // Action bar title
-                    actionBar.setTitle("Category");
+                    actionBar.setTitle("Kategorien");
                     return true;
 
                 case R.id.navigation_profile:
@@ -143,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements MyListener
                     postButton.setVisibility(View.INVISIBLE);
 
                     // Action bar title
-                    actionBar.setTitle("Profile");
+                    actionBar.setTitle("Profil");
                     return true;
             }
             return false;

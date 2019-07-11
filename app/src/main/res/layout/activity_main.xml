@@ -15,7 +15,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="66dp"
-        android:text="New Product"
+        android:text="Neues Produkt"
         android:textColor="@color/colorWhite"
         android:textSize="20dp"
         android:background="@drawable/fungover_button"
@@ -44,7 +44,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:itemBackground="@color/colorPurple"
+        app:itemBackground="@color/colorStumarkt2"
         app:itemIconTint="@color/colorWhite"
         app:itemTextColor="@color/colorWhite"
         app:menu="@menu/navigation">

@@ -33,7 +33,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/ic_person_black_24dp"
-                android:tint="@color/colorOrange"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -113,7 +112,7 @@
                 android:id="@+id/button_chat"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="SEND MESSAGE"
+                android:text="NACHRICHT SENDEN"
                 android:textColor="@color/colorWhite"
                 android:background="@drawable/fungover_button"
                 android:layout_marginTop="80dp"

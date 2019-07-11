@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/button_send"
             android:layout_centerVertical="true"
-            android:hint="Type a message"/>
+            android:hint="Geben Sie eine Nachricht ein"/>
 
         <Button
             android:id="@+id/button_send"

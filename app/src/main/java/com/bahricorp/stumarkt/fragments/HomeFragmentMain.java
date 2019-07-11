@@ -45,7 +45,7 @@ public class HomeFragmentMain extends Fragment
 
     public String uid, desc, price;
     public String image, image2, image3;
-    public String mName, mEmail;
+    public String mName, mEmail, imageURL;
 
     String category_text = "Cars";
     Query query;
@@ -142,6 +142,9 @@ public class HomeFragmentMain extends Fragment
                         image2 = model.getImage2();
                         image3 = model.getImage3();
 
+                        // for user image
+                        imageURL = model.getImageURL();
+
                         // views find
                         ImageView imageView = (ImageView) view.findViewById(R.id.blog_image);
                         TextView titleTextView = (TextView) view.findViewById(R.id.blog_title);
@@ -190,6 +193,8 @@ public class HomeFragmentMain extends Fragment
                         intent.putExtra("image2", image2); // put image2
                         intent.putExtra("image3", image3); // put image3
 
+                        // for user image
+                        intent.putExtra("imageURL", imageURL);
 
                         startActivity(intent);
                     }
@@ -213,7 +218,6 @@ public class HomeFragmentMain extends Fragment
                     public void onItemClick(View view, int position)
                     {
                         Intent intent = new Intent(view.getContext(), PostDetailActivity.class);
-
                         startActivity(intent);
                     }
 
@@ -232,7 +236,6 @@ public class HomeFragmentMain extends Fragment
         // Google>Android Studio Simple Recycler View Fragment
         // PhotoBlogApp Repository (examples)
     }
-
 
     public void getData(String data)
     {

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bahricorp.stumarkt.Activity.ChatActivity;
 import com.bahricorp.stumarkt.models.UserModel;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -46,8 +47,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>
         holder.email.setText(user.getEmail());
         holder.username.setText(user.getName());
 
-        /*
-        if(user.getImageURL().equals("default"))
+        // for profile image String imageURL
+        if(user.getImageURL().equals(""))
         {
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
         }
@@ -55,7 +56,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>
         {
             Glide.with(mContext).load(user.getImageURL()).into(holder.profile_image);
         }
-        */
 
         holder.itemView.setOnClickListener(new View.OnClickListener()
         {
@@ -67,6 +67,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>
                 intent.putExtra("userId", user.getId());
                 intent.putExtra("userName", user.getName());
                 intent.putExtra("userEmail", user.getEmail());
+
+                // for profile image
+                intent.putExtra("userImage", user.getImageURL());
                 mContext.startActivity(intent);
             }
         });

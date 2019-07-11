@@ -5,7 +5,7 @@ public class BlogPost extends BlogPostId
     public String image;
     public String image2;
     public String image3;
-    public String name, email, title, desc, userId, price, category, sex;
+    public String name, email, title, desc, userId, price, category, sex, imageURL;
 
     public BlogPost() {}
 
@@ -129,5 +129,15 @@ public class BlogPost extends BlogPostId
     public void setSex(String sex)
     {
         this.sex = sex;
+    }
+
+    public String getImageURL()
+    {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL)
+    {
+        this.imageURL = imageURL;
     }
 }

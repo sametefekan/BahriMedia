@@ -34,7 +34,6 @@ public class UsersActivity extends AppCompatActivity
     private ArrayList<UserModel> mUsers;
     private List<String> usersList;
 
-    // new
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseDatabase firebaseDatabase;
@@ -72,7 +71,7 @@ public class UsersActivity extends AppCompatActivity
         userAdapter = new UserAdapter(this, mUsers);
         recyclerView.setAdapter(userAdapter);
 
-        // old
+        // old for read users on database
         readUser();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -93,11 +92,12 @@ public class UsersActivity extends AppCompatActivity
         return true;
     }
 
-    // old
     private void readUser()
     {
         // old one
         // final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        // same bellow
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats"); // old one "Users"
@@ -143,7 +143,8 @@ public class UsersActivity extends AppCompatActivity
                 // new
                 readChats();
 
-                /* // it's for users activity
+                /*
+                // it's for users activity
                 userAdapter = new UserAdapter(getBaseContext(), mUsers);
                 recyclerView.setAdapter(userAdapter);
                 */

@@ -45,9 +45,7 @@ import java.util.Calendar;
 public class NewPostActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
     private Button buttonShare;
-
     private EditText postTitle, postDesc, postPrice;
-
     private ImageButton imageButton, imageButton2, imageButton3;
 
     private static final int GalleryPick = 1;
@@ -62,12 +60,10 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
     private StorageReference PostImagesRefrence;
 
     FirebaseDatabase firebaseDatabase;
-
     DatabaseReference mDatabase, mDatabase1;
-
     StorageReference filePath2, filePath3;
 
-    private String saveCurrentDate, saveCurrentTime, postRandomName, generatedFilePath, Title, Description, Price, userName, category_text;
+    private String saveCurrentDate, saveCurrentTime, postRandomName, generatedFilePath, Title, Description, Price, userName, category_text, userImage;
 
     private ProgressDialog progressDialog;
 
@@ -257,7 +253,6 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
             progressDialog.setMessage("Uploading, please wait...");
             progressDialog.show();
 
-            // after
             StoringImageToFireBaseStorage();
         }
     }
@@ -275,6 +270,9 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
                 UserModel user = dataSnapshot.getValue(UserModel.class);
 
                 userName = user.getName();
+
+                // for user profile image
+                userImage = user.getImageURL();
 
                 /*
                 for(DataSnapshot snapshot : dataSnapshot.getChildren())
@@ -408,7 +406,7 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
         // Database location
         // original *** mDatabase = firebaseDatabase.getReference().child("Post").child(postRandomName);
         mDatabase = firebaseDatabase.getReference().child("Post").child(postRandomName);
-        //                                                       .child(category_text)
+        //.child(category_text)
 
         // add file on Firebase and got Download Link
         filePath.putFile(ImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()
@@ -450,6 +448,9 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
                     mDatabase.child("name").setValue(userName);
                     mDatabase.child("email").setValue(user.getEmail());
                     mDatabase.child("userId").setValue(user.getUid());
+
+                    // for user image
+                    mDatabase.child("imageURL").setValue(userImage);
                 }
                 else
                 {
@@ -515,7 +516,6 @@ public class NewPostActivity extends AppCompatActivity implements AdapterView.On
                     if(task.isSuccessful())
                     {
                         Uri downUri3 = task.getResult();
-
                         mDatabase.child("image3").setValue(downUri3.toString());
                     }
                     else

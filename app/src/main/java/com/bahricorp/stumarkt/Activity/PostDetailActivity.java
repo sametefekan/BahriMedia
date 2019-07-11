@@ -15,12 +15,17 @@ import com.bahricorp.stumarkt.ViewPagerAdapter;
 import com.bahricorp.stumarkt.models.BlogPost;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PostDetailActivity extends AppCompatActivity
 {
     public TextView textView, nameTextView, emailTextView, descTextView, priceTextView;
 
     public ImageView imageView;
+    public ImageView profileImage;
+
     public ViewPager viewPager;
     public Button chatButton;
 
@@ -52,6 +57,9 @@ public class PostDetailActivity extends AppCompatActivity
         priceTextView = findViewById(R.id.blog_price);
         chatButton = findViewById(R.id.button_chat);
 
+        // profileImage = findViewById(R.id.profile_image);
+        profileImage = findViewById(R.id.blog_user_image);
+
         // image view // save
         // imageView = findViewById(R.id.blog_image);
 
@@ -73,6 +81,9 @@ public class PostDetailActivity extends AppCompatActivity
         String mImg2 = getIntent().getStringExtra("image2");
         String mImg3 = getIntent().getStringExtra("image3");
 
+        // for user image
+        String imageURL = getIntent().getStringExtra("imageURL");
+
         String[] strings = {mImg, mImg2, mImg3};
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, strings);
@@ -93,6 +104,14 @@ public class PostDetailActivity extends AppCompatActivity
 
         // save
         // Picasso.get().load(mImg).into(imageView);
+
+        // for user profile image
+        Picasso.get().load(imageURL).into(profileImage);
+
+        if(imageURL == null)
+        {
+            profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
 
         chatButton.setOnClickListener(new View.OnClickListener()
         {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bahricorp.stumarkt">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -15,7 +16,8 @@
         android:roundIcon="@drawable/stumarkt_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Activity.SplashActivity">
+        <activity
+            android:name=".Activity.SplashActivity">
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
@@ -27,32 +29,32 @@
         </activity>
         <activity
             android:name=".Activity.RegisterActivity"
-            android:label="Register"
+            android:label="Registrieren"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.LoginActivity"
-            android:label="Login"
+            android:label="Anmeldung"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.MainActivity"
-            android:label="Bahri Media"
+            android:label="Stumarkt"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Activity.PostDetailActivity"
-            android:label="Bahri Media"
+            android:label="Post Detail"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Activity.ProfileActivity"
-            android:label="Profile"
+            android:label="Profil"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.NewPostActivity"
-            android:label="New Post"
+            android:label="neuer Beitrag"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar" />
         <activity
@@ -62,7 +64,7 @@
             android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Activity.UsersActivity"
-            android:label="Chat"
+            android:label="Nachrichten"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar"/>
         <activity
