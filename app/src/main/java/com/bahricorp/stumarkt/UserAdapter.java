@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>
 {
     public List<UserModel> mUserModels;
@@ -50,7 +52,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>
         // for profile image String imageURL
         if(user.getImageURL().equals(""))
         {
-            holder.profile_image.setImageResource(R.mipmap.ic_launcher);
+            holder.profile_image.setImageResource(R.drawable.ic_person_black_24dp);
         }
         else
         {

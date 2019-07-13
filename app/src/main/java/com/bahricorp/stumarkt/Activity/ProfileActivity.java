@@ -17,32 +17,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bahricorp.stumarkt.R;
+import com.bahricorp.stumarkt.models.UserModel;
 import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+import java.util.ArrayList;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener
 {
-
     private FirebaseAuth firebaseAuth;
 
     private TextView textViewUserEmail;
     private Button buttonLogout;
     private Button menuButton;
-    private ImageView profilePhoto;
+    private CircleImageView profilePhoto;
 
     private Bundle savedInstanceState;
 
@@ -57,6 +62,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     DatabaseReference mDatabase, mDatabase1;
     StorageReference filePath2, filePath3;
 
+    private ArrayList<UserModel> mUsers;
+
+    private FirebaseFirestore firebaseFirestore;
+
+    public String image;
+
+    FirebaseUser fuser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -65,7 +78,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if (firebaseAuth.getCurrentUser() == null)
+        if(firebaseAuth.getCurrentUser() == null)
         {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
@@ -73,13 +86,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        textViewUserEmail = (TextView) findViewById(R.id.textViewEmail);
-        profilePhoto = (ImageView) findViewById(R.id.profilePhoto);
-        profilePhoto.setOnClickListener(this);
-
         assert user != null;
+        mUsers = new ArrayList<>();
+        progressDialog = new ProgressDialog(this);
 
-        textViewUserEmail.setText("Hey  " + user.getEmail());
+        textViewUserEmail = (TextView) findViewById(R.id.textViewEmail);
 
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonLogout.setOnClickListener(this);
@@ -87,13 +98,18 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         menuButton = (Button) findViewById(R.id.buttonHome);
         menuButton.setOnClickListener(this);
 
-        progressDialog = new ProgressDialog(this);
+        profilePhoto = (CircleImageView) findViewById(R.id.profilePhoto);
+        profilePhoto.setOnClickListener(this);
+
+        textViewUserEmail.setText("Hey  " + user.getEmail());
 
         // Firebase Storage
         PostImagesRefrence = FirebaseStorage.getInstance().getReference();
 
         // Firebase Database
         firebaseDatabase = FirebaseDatabase.getInstance();
+
+        readUser();
 
         profilePhoto.setOnClickListener(new View.OnClickListener()
         {
@@ -220,6 +236,42 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     String message = task.getException().getMessage();
                     Toast.makeText(ProfileActivity.this, "Error" + message, Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    private void readUser()
+    {
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                // old for users activity
+                mUsers.clear();
+
+                for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    // it's for users activity
+                    UserModel user = snapshot.getValue(UserModel.class);
+
+                    assert user != null;
+
+                    if(user.getEmail().equals(firebaseUser.getEmail()))
+                    {
+                        String imageUrl = user.getImageURL();
+                        Picasso.get().load(imageUrl).into(profilePhoto);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
             }
         });
     }

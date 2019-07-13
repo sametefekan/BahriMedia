@@ -24,7 +24,7 @@ public class PostDetailActivity extends AppCompatActivity
     public TextView textView, nameTextView, emailTextView, descTextView, priceTextView;
 
     public ImageView imageView;
-    public ImageView profileImage;
+    public CircleImageView profileImage;
 
     public ViewPager viewPager;
     public Button chatButton;
