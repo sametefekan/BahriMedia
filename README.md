@@ -1,6 +1,6 @@
 <img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/logo.png?raw=true" alt="React Native Starter Kit" width="200" />
 
-# BahriMedia, Stumarkt
+# Stumarkt, BahriMedia 
 ### By Melih Bahri AKTAN
 
 Second-hand market for students Android App with Firebase.
