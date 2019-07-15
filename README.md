@@ -1,4 +1,4 @@
-<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/logo.png?raw=true" alt="React Native Starter Kit" width="400" />
+<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/logo.png?raw=true" alt="React Native Starter Kit" width="50" />
 
 # BahriMedia, Stumarkt
 ### By Melih Bahri AKTAN
