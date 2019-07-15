@@ -17,11 +17,11 @@ Register: allow user register a new account with username and password
 Signin: user must signin with username and password to use app.
 Edit profile: change avatar image.
 
-2. Chat, Users
+2. Home Fragment Recycler View 
 
-send text message.
+3. Category of posts from Firebase database
 
-3. New Post
+4. New Post
 
 Three image with crop feature
 Post title
@@ -31,9 +31,11 @@ Category Spinner
 User Name, user email
 Image Slider
 
-4. Category of posts from Firebase database
-
 5. Post Detail
+
+6. Chat, Users
+
+send text message.
 
 Image Slider Feature (Library)
 
