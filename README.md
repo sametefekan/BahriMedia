@@ -15,8 +15,8 @@ Download Anroid App from Drive: [Stumarkt](https://"")
 |<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-21-53.png?raw=true" height="400">|
 
 |Login|
-|:-:|
-|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-21-50.png?raw=true" height="400" align="right" >|
+|:-: align="right"|
+|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-21-50.png?raw=true" height="400">|
 
 |Profile|
 |:-:|
