@@ -60,6 +60,11 @@ Image Slider Feature (Library)
 - Firebase Analytics
 - Firebase UI Database
 
+### Thanks
+
+  * [Firebase](https://github.com/firebase/quickstart-android)
+  * [Picasso](https://github.com/square/picasso)
+
 Gradle(App)
 -----
 ```
