@@ -12,6 +12,8 @@ Download Anroid App from Drive: [Stumarkt](https://"")
 |:-:|
 |<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-11.png" height="400">|
 
+### Used `Firebase` documentation coming soon!
+
 ### Used Things:
 - Min API: 21, 16
 - Target&Compile API: 28
