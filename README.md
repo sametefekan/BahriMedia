@@ -10,41 +10,24 @@ Download Anroid App from Drive: [Stumarkt](https://"")
 ### The under construction!
 ### Documentation coming soon!
 
-|Register|
-|:-:|
-|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-21-53.png?raw=true" height="400">|
+<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-21-53.png?raw=true" height="400" align="left">
 
-|Login align="right"|
-|:-: align="right"|
-|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-21-50.png?raw=true" height="400" align="right">|
+<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-21-50.png?raw=true" height="400" align="center">
 
-|Profile|
-|:-:|
-|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-34.png?raw=true" height="400">|
 
-|Home|
-|:-:|
-|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-27.png?raw=true" height="400">|
+<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-34.png?raw=true" height="400" align="right">
 
-|Category|
-|:-:|
-|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-30.png?raw=true" height="400">|
+<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-27.png?raw=true" height="400" align="left">
 
-|Users|
-|:-:|
-|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-40.png?raw=true" height="400">|
+<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-30.png?raw=true" height="400" align="center">
 
-|Chat|
-|:-:|
-|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-45.png?raw=true" height="400">|
+<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-40.png?raw=true" height="400" align="right">
 
-|New Post|
-|:-:|
-|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-59.png?raw=true" height="400">|
+<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-45.png?raw=true" height="400" align="left">
 
-|Post Detail|
-|:-:|
-|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-16-21.png?raw=true" height="400">|
+<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-59.png?raw=true" height="400" align="center">
+
+<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-16-21.png?raw=true" height="400" align="right">
 
 ### Used `Firebase` documentation coming soon!
 
