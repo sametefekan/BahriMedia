@@ -1,18 +1,16 @@
-# BahriMedia
-
+# BahriMedia, Stumarkt
 ### By Melih Bahri AKTAN
 
 Second-hand market for students Android App with Firebase.
 
-Download Anroid App from Drive: [Sesgoritma](https://"")
+Download Anroid App from Drive: [Stumarkt](https://"")
 
 ### The under construction!
 ### Documentation coming soon!
 
 |Demo|
 |:-:|
-|<img src="Assets/Demo Gif.gif" height="400">|
-|[Watch Demo Videos &#128266; ](https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-11.png)|
+|<img src="https://github.com/melihbahri/BahriMedia/blob/master/screenshots/Screenshot_2019-07-13-12-15-11.png" height="400">|
 
 ### Used Things:
 - Min API: 21, 16
