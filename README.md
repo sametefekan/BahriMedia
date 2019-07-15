@@ -10,7 +10,7 @@ Download Anroid App from Drive: [Stumarkt](https://"")
 ### The under construction!
 ### Documentation coming soon!
 
-Feature
+### Feature  
 1. Signin, signout, register.
 
 Register: allow user register a new account with username and password
