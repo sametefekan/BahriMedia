@@ -64,6 +64,7 @@ Image Slider Feature (Library)
 
   * [Firebase](https://github.com/firebase/quickstart-android)
   * [Picasso](https://github.com/square/picasso)
+  * [Android-Image-Cropper](https://github.com/ArthurHub/Android-Image-Cropper)
 
 Gradle(App)
 -----
