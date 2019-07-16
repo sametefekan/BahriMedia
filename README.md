@@ -69,23 +69,24 @@ Image Slider Feature (Library)
   * [Banner-Slider](https://github.com/saeedsh92/Banner-Slider)
   * [Android-Image-Slider](https://github.com/smarteist/Android-Image-Slider)
   
+  
 
-[SplashActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/SplashActivity.java)
+* [SplashActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/SplashActivity.java)
 
-[LoginActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/LoginActivity.java)
-[RegisterActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/RegisterActivity.java)
+* [LoginActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/LoginActivity.java)
+* [RegisterActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/RegisterActivity.java)
 
-[PostDetailActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/PostDetailActivity.java)
-[NewPostActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/NewPostActivity.java)
+* [PostDetailActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/PostDetailActivity.java)
+* [NewPostActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/NewPostActivity.java)
 
-MainActivity with bottom navigationbar, newPost button, toolbar button: [MainActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/MainActivity.java)
+* MainActivity with bottom navigationbar, newPost button, toolbar button: [MainActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/MainActivity.java)
 
-Chat and Users
+* Chat and Users
 [UsersActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/UsersActivity.java)
 
-[HomeFragment](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/fragments/HomeFragmentMain.java)
-[CategoryFragment](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/fragments/CategoryFragment.java)
-[ProfileFragment](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/fragments/ProfileFragment.java)
+* [HomeFragment](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/fragments/HomeFragmentMain.java)
+* [CategoryFragment](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/fragments/CategoryFragment.java)
+* [ProfileFragment](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/fragments/ProfileFragment.java)
 
 Gradle(App)
 -----
