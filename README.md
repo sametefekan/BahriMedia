@@ -70,7 +70,7 @@ Image Slider Feature (Library)
   * [Android-Image-Slider](https://github.com/smarteist/Android-Image-Slider)
   
   
-
+### `Java` documentation for you
 * [SplashActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/SplashActivity.java)
 
 * [LoginActivity](https://github.com/melihbahri/BahriMedia/blob/master/app/src/main/java/com/bahricorp/stumarkt/Activity/LoginActivity.java)
