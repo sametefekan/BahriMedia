@@ -49,4 +49,5 @@
         app:itemTextColor="@color/colorWhite"
         app:menu="@menu/navigation">
     </android.support.design.widget.BottomNavigationView>
+
 </RelativeLayout>

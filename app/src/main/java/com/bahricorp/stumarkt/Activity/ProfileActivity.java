@@ -9,10 +9,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,8 +78,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        // get the bottom sheet view
+        LinearLayout llBottomSheet = (LinearLayout) findViewById(R.id.odeme_ekrani);
 
+        firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() == null)
         {
             finish();
@@ -91,21 +95,29 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         progressDialog = new ProgressDialog(this);
 
         textViewUserEmail = (TextView) findViewById(R.id.textViewEmail);
-
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonLogout.setOnClickListener(this);
-
         menuButton = (Button) findViewById(R.id.buttonHome);
         menuButton.setOnClickListener(this);
-
         profilePhoto = (CircleImageView) findViewById(R.id.profilePhoto);
         profilePhoto.setOnClickListener(this);
+
+        // BOTTOM SHEET
+        // init the bottom sheet behavior
+        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
+        // change the state of the bottom sheet
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        // set the peek height
+        bottomSheetBehavior.setPeekHeight(230);
+        // set hideable or not
+        bottomSheetBehavior.setHideable(false);
 
         textViewUserEmail.setText("Hey  " + user.getEmail());
 
         // Firebase Storage
         PostImagesRefrence = FirebaseStorage.getInstance().getReference();
-
         // Firebase Database
         firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -118,6 +130,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             {
                 OpenGallery();
             }
+        });
+
+        // set callback for changes
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback()
+        {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) { }
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) { }
         });
     }
 

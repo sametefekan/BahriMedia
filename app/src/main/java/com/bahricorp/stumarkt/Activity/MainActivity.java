@@ -1,5 +1,6 @@
 package com.bahricorp.stumarkt.Activity;
 
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.bahricorp.stumarkt.MyListener;
 import com.bahricorp.stumarkt.R;
@@ -53,16 +55,6 @@ public class MainActivity extends AppCompatActivity implements MyListener
         homeFragmentMain = new HomeFragmentMain();
         categoryFragment = new CategoryFragment();
         profileFragment = new ProfileFragment();
-
-        postButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent postIntent = new Intent(MainActivity.this, NewPostActivity.class);
-                startActivity(postIntent);
-            }
-        });
 
         setFragment(homeFragmentMain, "home_fragment");
     }

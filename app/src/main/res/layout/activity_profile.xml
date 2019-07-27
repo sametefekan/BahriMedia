@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,61 +6,77 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ProfileActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:background="@drawable/fungover_color"/>
+        android:layout_height="match_parent">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profilePhoto"
-        android:layout_width="145dp"
-        android:layout_height="145dp"
-        android:src="@drawable/circle"
-        android:layout_marginTop="95dp"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="TODO" />
+        <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/textViewEmail"
-        android:background="@drawable/fungover_edittext"
-        android:drawableLeft="@drawable/ic_username"
-        android:textStyle="bold"
-        android:textSize="16dp"
-        android:textColor="@color/colorWhite"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:text="Welcome redgame34@gmail.com"
-        android:gravity="center"
-        android:layout_below="@id/profilePhoto"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        tools:ignore="HardcodedText"
-        android:drawableStart="@drawable/ic_username" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/fungover_color"/>
 
-    <Button
-        android:id="@+id/buttonLogout"
-        android:layout_width="137dp"
-        android:layout_height="45dp"
-        android:layout_below="@+id/textViewEmail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/fungover_button"
-        android:text="Abmelden"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilePhoto"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:src="@drawable/circle"
+            android:layout_marginTop="95dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="TODO" />
 
-    <Button
-        android:id="@+id/buttonHome"
-        android:layout_width="137dp"
-        android:layout_height="45dp"
-        android:layout_below="@+id/buttonLogout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/fungover_button"
-        android:text="Home"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fungover_edittext"
+            android:drawableLeft="@drawable/ic_username"
+            android:drawableStart="@drawable/ic_username"
+            android:text="Welcome redgame34@gmail.com"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_below="@id/profilePhoto"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            tools:ignore="HardcodedText" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="137dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/textViewEmail"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/fungover_button"
+            android:text="Abmelden"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/buttonHome"
+            android:layout_width="137dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/buttonLogout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/fungover_button"
+            android:text="Home"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/viewA"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:orientation="horizontal"/>
+
+    <!-- include bottom sheet -->
+    <include layout="@layout/odeme_ekrani" />
+
+</android.support.design.widget.CoordinatorLayout>
